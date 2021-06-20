@@ -1,6 +1,7 @@
 import NavBar from "components/navBar";
 import HomeSection from "components/sections/HomeSection";
 import ProjectSection from "components/sections/ProjectSection";
+import SkillsSection from "components/sections/SkillsSection";
 import { Fragment, useContext } from "react";
 import { Context } from "react-responsive";
 import styled from "styled-components";
@@ -38,9 +39,10 @@ export default function Home() {
           tag="Golf events site"
           imageUrl="/images/golf.png"
           techs={["react", "redux", "typescript", "circle_ci"]}
-          sectionIndex={2}
+          sectionIndex={-1}
           contrast
         />
+        <SkillsSection />
       </SectionsContainer>
     </Fragment>
   );

@@ -63,7 +63,12 @@ const NavBar = () => {
       <NavBarLogo href="/" />
       <NavBarMenu>
         {menuItems.map((menuItem, index) => (
-          <NavBarItem key={index} to={`section-${index}`} duration={500} smooth>
+          <NavBarItem
+            key={index}
+            to={`section-${index + 1}`}
+            duration={500}
+            smooth
+          >
             {menuItem}
           </NavBarItem>
         ))}

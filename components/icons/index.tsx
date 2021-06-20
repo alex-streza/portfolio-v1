@@ -4,6 +4,7 @@ import Cursor from "./cursor.svg";
 import Docker from "./docker.svg";
 import Dribble from "./dribble.svg";
 import Expressjs from "./expressjs.svg";
+import Frontend from "./frontend.svg";
 import Github from "./github.svg";
 import Linkedin from "./linkedin.svg";
 import Mail from "./mail.svg";
@@ -12,6 +13,7 @@ import Nextjs from "./nextjs.svg";
 import Postgres from "./postgres.svg";
 import React from "./react.svg";
 import Redux from "./redux.svg";
+import Shield from "./shield.svg";
 import Typescript from "./typescript.svg";
 
 const iconMap = {
@@ -21,6 +23,7 @@ const iconMap = {
   docker: Docker,
   dribble: Dribble,
   expressjs: Expressjs,
+  frontend: Frontend,
   github: Github,
   linkedin: Linkedin,
   mail: Mail,
@@ -29,6 +32,7 @@ const iconMap = {
   postgres: Postgres,
   react: React,
   redux: Redux,
+  shield: Shield,
   typescript: Typescript,
 };
 

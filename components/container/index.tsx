@@ -5,7 +5,7 @@ import { device } from "./device";
 interface ResponsiveContainerProps {
   children: JSX.Element | JSX.Element[] | any;
   direction?: "row" | "column";
-  alignItems?: "flex-start" | "flex-end";
+  alignItems?: "flex-start" | "flex-end" | center;
   withNav?: boolean;
   contrast?: boolean;
   withPadding?: boolean;

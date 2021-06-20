@@ -68,10 +68,9 @@ const Label = styled.span<{ active?: boolean }>`
 `;
 
 const TechBadge = (props: BadgeProps) => {
-  const { label = "", icon, description, isSmall, contrast } = props;
+  const { label = "", icon, isSmall, contrast } = props;
   const iconSize = isSmall ? "32px" : "44px";
   const [active, setActive] = useState(false);
-
   return (
     <BadgeContainer
       isSmall={isSmall}

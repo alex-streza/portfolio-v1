@@ -56,7 +56,7 @@ export const Button: React.FC<ButtonProps> = (props: ButtonProps) => {
   return (
     <StyledButton type="button">
       {label}
-      {icon && <Icon name={icon} width={iconSize}></Icon>}
+      {icon && <Icon name={icon} width={iconSize} />}
     </StyledButton>
   );
 };
