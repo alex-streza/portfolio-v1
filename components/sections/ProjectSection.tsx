@@ -42,7 +42,6 @@ const Description = styled.p<{ contrast?: boolean }>`
   @media ${device.mobileL} {
     margin-top: 24px;
     font-size: 20px;
-    width: 400px;
   }
   @media ${device.laptop} {
     margin-top: 60px;
@@ -76,7 +75,21 @@ const TechBadgesContainer = styled.div`
 const ProjectImageContainer = styled.div`
   position: absolute;
   right: -10%;
-  top: 12%;
+  top: 30%;
+  width: 75vw;
+  height: 40vh;
+
+  @media ${device.mobileL} {
+    top: 30%;
+    width: 60vw;
+    height: 60vh;
+  }
+
+  @media ${device.laptop} {
+    top: 12%;
+    width: 40vw;
+    height: 60vh;
+  }
 
   .projectImage {
     border-radius: 8px 0 0 8px;
@@ -113,15 +126,14 @@ const ProjectSection = (props: ProjectSectionProps) => {
             ))}
           </TechBadgesContainer>
         </ContentContainer>
-        <ProjectImageContainer>
+        {/* <ProjectImageContainer>
           <Image
             src={imageUrl}
             alt={title}
             className="projectImage"
-            width={1000}
-            height={700}
+            layout="fill"
           />
-        </ProjectImageContainer>
+        </ProjectImageContainer> */}
       </ResponsiveContainer>
     </ScrollableElement>
   );

@@ -41,6 +41,8 @@ const BadgeContainer = styled.div<{
   padding: 14px;
   align-items: center;
   justify-content: start;
+  z-index: 2;
+
   max-width: ${({ isSmall, active }) =>
     calculateMaxWidth(isSmall, active, true)};
 
