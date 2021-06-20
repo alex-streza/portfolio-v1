@@ -263,6 +263,10 @@ body > * {
   letter-spacing: -0.02em;
 }
 
+body {
+  overflow-x: hidden;
+}
+
 h1,
 h2,
 h3,

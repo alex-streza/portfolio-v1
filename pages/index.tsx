@@ -22,15 +22,22 @@ export default function Home() {
           title="Bicycle Theft Map app"
           description="Responsive website to showcase bicycle thefts in the UK to increase awareness."
           tag="Featured Project"
-          imageUrl=""
-          techs={["react", "typescript", "mapbox"]}
+          imageUrl="/images/bike-theft-map.png"
+          techs={[
+            "react",
+            "typescript",
+            "mapbox",
+            "expressjs",
+            "postgres",
+            "docker",
+          ]}
         />
         <ProjectSection
           title="Golf Genius Directory"
           description="Management website for golf related events and tournaments with features such as event registration, event map and filtering for wanted events."
           tag="Golf events site"
-          imageUrl=""
-          techs={[]}
+          imageUrl="/images/golf.png"
+          techs={["react", "redux", "typescript", "circle_ci"]}
           sectionIndex={2}
           contrast
         />

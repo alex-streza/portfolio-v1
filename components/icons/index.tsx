@@ -1,32 +1,34 @@
-import Blender48 from "./blender_48.svg";
-import Cursor48 from "./cursor_48.svg";
-import Docker48 from "./docker_48.svg";
+import Blender from "./blender.svg";
+import CircleCi from "./circle_ci.svg";
+import Cursor from "./cursor.svg";
+import Docker from "./docker.svg";
 import Dribble from "./dribble.svg";
-import Expressjs48 from "./expressjs_48.svg";
+import Expressjs from "./expressjs.svg";
 import Github from "./github.svg";
 import Linkedin from "./linkedin.svg";
 import Mail from "./mail.svg";
 import Mapbox from "./mapbox.svg";
-import Nextjs48 from "./nextjs_48.svg";
+import Nextjs from "./nextjs.svg";
 import Postgres from "./postgres.svg";
 import React from "./react.svg";
-import Redux48 from "./redux_48.svg";
+import Redux from "./redux.svg";
 import Typescript from "./typescript.svg";
 
 const iconMap = {
-  blender_48: Blender48,
-  cursor_48: Cursor48,
-  docker_48: Docker48,
+  blender: Blender,
+  circle_ci: CircleCi,
+  cursor: Cursor,
+  docker: Docker,
   dribble: Dribble,
-  expressjs_48: Expressjs48,
+  expressjs: Expressjs,
   github: Github,
   linkedin: Linkedin,
   mail: Mail,
   mapbox: Mapbox,
-  nextjs_48: Nextjs48,
+  nextjs: Nextjs,
   postgres: Postgres,
   react: React,
-  redux_48: Redux48,
+  redux: Redux,
   typescript: Typescript,
 };
 

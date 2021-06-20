@@ -4,6 +4,7 @@ import { device } from "components/container/device";
 import React from "react";
 import { Element } from "react-scroll";
 import styled from "styled-components";
+import Image from "next/image";
 
 interface ProjectSectionProps {
   tag: string;
@@ -52,6 +53,7 @@ const Description = styled.p<{ contrast?: boolean }>`
 
 const ContentContainer = styled.div`
   margin: 10% 0;
+  height: 100vh;
 `;
 
 const ScrollableElement = styled(Element)`
@@ -59,13 +61,25 @@ const ScrollableElement = styled(Element)`
 `;
 
 const TechBadgesContainer = styled.div`
-  display: grid;
-  grid-gap: 20px;
-  max-width: 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 160px;
 
   @media ${device.laptop} {
-    grid-template-columns: 1fr 1fr 1fr;
-    max-width: 500px;
+    max-width: 40vw;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+`;
+
+const ProjectImageContainer = styled.div`
+  position: absolute;
+  right: -10%;
+  top: 12%;
+
+  .projectImage {
+    border-radius: 8px 0 0 8px;
   }
 `;
 
@@ -90,23 +104,24 @@ const ProjectSection = (props: ProjectSectionProps) => {
             {techs.map((tech, index) => (
               <TechBadge
                 key={`tech-${index}`}
-                tech={tech}
                 icon={tech}
                 description=""
-                label=""
+                label={tech.charAt(0).toUpperCase() + tech.slice(1)}
                 isSmall
                 contrast
               />
             ))}
           </TechBadgesContainer>
         </ContentContainer>
-        {/* <Image
-          src="/images/bike-theft-map.png"
-          alt="Bike Theft Map"
-          className="projectImage"
-          width={500}
-          height={400}
-        /> */}
+        <ProjectImageContainer>
+          <Image
+            src={imageUrl}
+            alt={title}
+            className="projectImage"
+            width={1000}
+            height={700}
+          />
+        </ProjectImageContainer>
       </ResponsiveContainer>
     </ScrollableElement>
   );
