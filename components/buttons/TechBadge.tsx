@@ -81,7 +81,7 @@ const TechBadge = (props: BadgeProps) => {
     >
       <Icon name={icon} width={iconSize} />
       <Label className="tech-label" active={active}>
-        {label.replaceAll("_", "")}
+        {label && label.replaceAll("_", "")}
       </Label>
     </BadgeContainer>
   );

@@ -126,14 +126,14 @@ const ProjectSection = (props: ProjectSectionProps) => {
             ))}
           </TechBadgesContainer>
         </ContentContainer>
-        {/* <ProjectImageContainer>
+        <ProjectImageContainer>
           <Image
             src={imageUrl}
             alt={title}
             className="projectImage"
             layout="fill"
           />
-        </ProjectImageContainer> */}
+        </ProjectImageContainer>
       </ResponsiveContainer>
     </ScrollableElement>
   );
