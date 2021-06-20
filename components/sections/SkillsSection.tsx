@@ -95,8 +95,8 @@ const SkillsSection = () => {
         <Title>Skills</Title>
         <Description>Love to learn and deliver</Description>
         <SkillsContainer>
-          {skills.map((skill) => (
-            <SkillCard {...skill} />
+          {skills.map((skill, index) => (
+            <SkillCard key={`skill-${index}`} {...skill} />
           ))}
         </SkillsContainer>
         <Title>Tech & Tools</Title>
