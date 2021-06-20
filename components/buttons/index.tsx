@@ -1,5 +1,8 @@
 import { device } from "components/container/device";
 import styled from "styled-components";
+import Icon from "components/icons";
+import { useMediaQuery } from "react-responsive";
+import tinycolor from "tinycolor2";
 
 export interface ButtonProps extends React.HTMLProps<HTMLButtonElement> {
   disabled?: boolean;
@@ -12,8 +15,8 @@ const StyledButton = styled.button`
   color: #ffffff;
   border-radius: ${({ theme }) => theme.borderRadius};
   background-color: ${({ theme }) => theme.palette.secondary};
-  width: 140px;
-  height: 40px;
+  width: 160px;
+  height: 48px;
   border: none;
   padding: 4px 12px;
   font-weight: 600;
@@ -26,28 +29,34 @@ const StyledButton = styled.button`
     height: 64px;
     font-size: 20px;
   }
-`;
 
-interface IconProps {
-  name: string;
-  height?: string;
-  width?: string;
-  isWhite?: boolean;
-}
+  :hover {
+    background-color: ${({ theme }) =>
+      tinycolor(theme.palette.secondary).lighten().toHexString()};
+  }
 
-export const Icon = styled.figure<IconProps>`
-  background: no-repeat;
-  background-image: url(${({ name }) => "/icons/" + name + "_mobile.svg"});
-  height: ${({ height }) => height ?? "16px"};
-  width: ${({ width }) => width ?? "16px"};
+  :active {
+    background-color: ${({ theme }) =>
+      tinycolor(theme.palette.secondary).darken().toHexString()};
+  }
+
+  svg {
+    margin-left: auto;
+  }
 `;
 
 export const Button: React.FC<ButtonProps> = (props: ButtonProps) => {
   const { icon, label } = props;
+  const isLargePhone = useMediaQuery({ minWidth: 425 });
+  const isDesktop = useMediaQuery({ minWidth: 1024 });
+  let iconSize = "24px";
+  if (isLargePhone) iconSize = "32px";
+  else if (isDesktop) iconSize = "36px";
+
   return (
     <StyledButton type="button">
       {label}
-      {/* {icon && <Icon className="icon" name={icon}></Icon>} */}
+      {icon && <Icon name={icon} width={iconSize}></Icon>}
     </StyledButton>
   );
 };

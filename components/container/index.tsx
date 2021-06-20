@@ -1,30 +1,49 @@
 import styled from "styled-components";
+import { theme } from "types/theme";
 import { device } from "./device";
 
 interface ResponsiveContainerProps {
-  children: JSX.Element | JSX.Element[];
+  children: JSX.Element | JSX.Element[] | any;
   direction?: "row" | "column";
+  withNav?: boolean;
+  contrast?: boolean;
+  withPadding?: boolean;
 }
 
+const calculateHeight = (withNav?: boolean, withPadding?: boolean) => {
+  if (withNav && withPadding) {
+    return `height: calc(100vh - 68px - 40px);
+
+    @media ${device.tablet} {
+      height: calc(100vh - 100px - 200px);
+    }`;
+  } else if (withNav) {
+    return `height: calc(100vh - 68px);
+
+    @media ${device.tablet} {
+      height: calc(100vh - 100px);
+    }`;
+  } else return "height: 100vh;";
+};
+
 export const Container = styled.div<ResponsiveContainerProps>`
-  padding: 0 20px;
   display: flex;
   flex-direction: ${({ direction }) => direction};
-
-  @media ${device.tablet} {
-    padding: 0 80px;
-  }
-
+  padding: 0 20px;
+  position: relative;
+  background-color: ${({ contrast, theme }) =>
+    contrast ? theme.palette.primary : "none"};
   @media ${device.laptop} {
     padding: 0 170px;
   }
+  ${({ withNav }) => calculateHeight(withNav)}
 `;
 
 const ResponsiveContainer = ({
   children,
-  direction = "row",
+  ...props
 }: ResponsiveContainerProps) => {
-  return <Container direction={direction}>{children}</Container>;
+  return <Container {...props}>{children}</Container>;
 };
 
 export default ResponsiveContainer;

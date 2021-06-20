@@ -1,7 +1,9 @@
-import { device } from "components/container/device";
 import { Container } from "components/container";
-
+import { device } from "components/container/device";
 import styled from "styled-components";
+import SocialLinks from "components/navBar/SocialLinks";
+import { useMediaQuery } from "react-responsive";
+import { Link } from "react-scroll";
 
 const NavBarContainer = styled(Container)`
   display: flex;
@@ -21,10 +23,14 @@ const NavBarMenu = styled.ul`
   max-width: 320px;
   grid-template-columns: 1fr 1fr 1fr;
   width: 66%;
-  padding-right: 80px;
+  padding-right: 20px;
+
+  @media ${device.tablet} {
+    padding-right: 80px;
+  }
 `;
 
-const NavBarItem = styled.a`
+const NavBarItem = styled(Link)`
   font-size: 16px;
 
   @media ${device.tablet} {
@@ -33,19 +39,6 @@ const NavBarItem = styled.a`
   }
   color: #ffffff;
 `;
-
-const NavBarSocial = styled.div`
-  display: none;
-  @media ${device.laptop} {
-    background-color: #ffffff;
-    width: 33%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-`;
-
 const NavBarLogo = styled.a`
   margin-right: auto;
   background: no-repeat;
@@ -60,20 +53,22 @@ const NavBarLogo = styled.a`
   }
 `;
 
+const menuItems = ["Work", "Skills", "Contact"];
+
 const NavBar = () => {
+  const isDesktop = useMediaQuery({ minWidth: 1024 });
+
   return (
     <NavBarContainer>
       <NavBarLogo href="/" />
       <NavBarMenu>
-        <NavBarItem>Work</NavBarItem>
-        <NavBarItem>Skills</NavBarItem>
-        <NavBarItem>Hire me</NavBarItem>
+        {menuItems.map((menuItem, index) => (
+          <NavBarItem key={index} to={`section-${index}`} duration={500} smooth>
+            {menuItem}
+          </NavBarItem>
+        ))}
       </NavBarMenu>
-      <NavBarSocial>
-        <span>Icon1</span>
-        <span>Icon2</span>
-        <span>Icon3</span>
-      </NavBarSocial>
+      {isDesktop && <SocialLinks />}
     </NavBarContainer>
   );
 };

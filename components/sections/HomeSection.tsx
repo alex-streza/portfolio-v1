@@ -1,8 +1,9 @@
+import Button from "components/buttons";
 import ResponsiveContainer from "components/container";
 import { device } from "components/container/device";
-import React, { Fragment } from "react";
+import SocialLinks from "components/navBar/SocialLinks";
+import { Element } from "react-scroll";
 import styled from "styled-components";
-import Button from "components/buttons";
 
 const Illustration = styled.figure`
   position: absolute;
@@ -11,8 +12,9 @@ const Illustration = styled.figure`
   background: no-repeat;
   background-image: url("/icons/background.svg");
   width: 80vw;
-  height: calc(100vh - 68px);
+  height: 100%;
   margin: 0;
+  height: calc(100vh - 68px);
 
   @media ${device.tablet} {
     height: calc(100vh - 100px);
@@ -39,7 +41,7 @@ const Subtitle = styled.p`
   font-size: 16px;
   line-height: 156.6%;
   letter-spacing: 0.12em;
-  width: 230px;
+  max-width: 230px;
   color: #ffffff;
   font-weight: 300;
   margin-top: 12px;
@@ -47,21 +49,44 @@ const Subtitle = styled.p`
 
   @media ${device.mobileL} {
     font-size: 20px;
-    width: 400px;
+    max-width: 400px;
   }
 `;
 
-const Section1 = () => {
+const SocialLinksContainer = styled.div`
+  position: absolute;
+  right: 0;
+  width: 20vw;
+  top: 68px;
+
+  @media ${device.mobileL} {
+    width: 17vw;
+  }
+
+  @media ${device.tablet} {
+    width: 18vw;
+    top: 100px;
+  }
+
+  @media ${device.laptop} {
+    display: none;
+  }
+`;
+
+const HomeSection = () => {
   return (
-    <Fragment>
+    <Element name="section-0">
       <Illustration />
-      <ResponsiveContainer direction="column">
+      <ResponsiveContainer direction="column" withNav>
         <Title>Wonderfully Crafted Web Experiences</Title>
         <Subtitle>Every project is unique and so is my work</Subtitle>
         <Button label="Contact me" icon="mail" />
       </ResponsiveContainer>
-    </Fragment>
+      <SocialLinksContainer>
+        <SocialLinks />
+      </SocialLinksContainer>
+    </Element>
   );
 };
 
-export default Section1;
+export default HomeSection;
