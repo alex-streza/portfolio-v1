@@ -23,7 +23,7 @@ export default function Home() {
           description="Responsive website to showcase bicycle thefts in the UK to increase awareness."
           tag="Featured Project"
           imageUrl=""
-          techs={[]}
+          techs={["react", "typescript", "mapbox"]}
         />
         <ProjectSection
           title="Golf Genius Directory"

@@ -6,12 +6,12 @@ import Expressjs48 from "./expressjs_48.svg";
 import Github from "./github.svg";
 import Linkedin from "./linkedin.svg";
 import Mail from "./mail.svg";
-import Mapbox48 from "./mapbox_48.svg";
+import Mapbox from "./mapbox.svg";
 import Nextjs48 from "./nextjs_48.svg";
-import Postgres48 from "./postgres_48.svg";
-import React48 from "./react_48.svg";
+import Postgres from "./postgres.svg";
+import React from "./react.svg";
 import Redux48 from "./redux_48.svg";
-import Typescript48 from "./typescript_48.svg";
+import Typescript from "./typescript.svg";
 
 const iconMap = {
   blender_48: Blender48,
@@ -22,12 +22,12 @@ const iconMap = {
   github: Github,
   linkedin: Linkedin,
   mail: Mail,
-  mapbox_48: Mapbox48,
+  mapbox: Mapbox,
   nextjs_48: Nextjs48,
-  postgres_48: Postgres48,
-  react_48: React48,
+  postgres: Postgres,
+  react: React,
   redux_48: Redux48,
-  typescript_48: Typescript48,
+  typescript: Typescript,
 };
 
 interface IconProps {

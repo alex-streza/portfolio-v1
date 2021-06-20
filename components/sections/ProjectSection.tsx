@@ -1,3 +1,4 @@
+import TechBadge from "components/buttons/TechBadge";
 import ResponsiveContainer from "components/container";
 import { device } from "components/container/device";
 import React from "react";
@@ -57,6 +58,17 @@ const ScrollableElement = styled(Element)`
   scroll-snap-align: start;
 `;
 
+const TechBadgesContainer = styled.div`
+  display: grid;
+  grid-gap: 20px;
+  max-width: 60px;
+
+  @media ${device.laptop} {
+    grid-template-columns: 1fr 1fr 1fr;
+    max-width: 500px;
+  }
+`;
+
 const ProjectSection = (props: ProjectSectionProps) => {
   const {
     title,
@@ -74,6 +86,19 @@ const ProjectSection = (props: ProjectSectionProps) => {
           <Tag contrast={contrast}>{tag}</Tag>
           <Title contrast={contrast}>{title}</Title>
           <Description contrast={contrast}>{description}</Description>
+          <TechBadgesContainer>
+            {techs.map((tech, index) => (
+              <TechBadge
+                key={`tech-${index}`}
+                tech={tech}
+                icon={tech}
+                description=""
+                label=""
+                isSmall
+                contrast
+              />
+            ))}
+          </TechBadgesContainer>
         </ContentContainer>
         {/* <Image
           src="/images/bike-theft-map.png"

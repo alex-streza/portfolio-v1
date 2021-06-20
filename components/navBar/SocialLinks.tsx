@@ -74,6 +74,7 @@ const SocialLinks = () => {
     <NavBarSocial>
       {icons.map((icon, index) => (
         <NavBarSocialItem
+          key={`social-link-${index}`}
           href={icon.href}
           onMouseEnter={() => onMouseEnter(index)}
           onMouseLeave={onMouseLeave}
