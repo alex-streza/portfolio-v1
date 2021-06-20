@@ -68,7 +68,7 @@ const Label = styled.span<{ active?: boolean }>`
 `;
 
 const TechBadge = (props: BadgeProps) => {
-  const { label, icon, description, isSmall, contrast } = props;
+  const { label = "", icon, description, isSmall, contrast } = props;
   const iconSize = isSmall ? "32px" : "44px";
   const [active, setActive] = useState(false);
 
@@ -81,7 +81,7 @@ const TechBadge = (props: BadgeProps) => {
     >
       <Icon name={icon} width={iconSize} />
       <Label className="tech-label" active={active}>
-        {label && label.replaceAll("_", "")}
+        {label.replace("_", "")}
       </Label>
     </BadgeContainer>
   );
