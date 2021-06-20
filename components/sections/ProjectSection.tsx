@@ -50,8 +50,9 @@ const Description = styled.p<{ contrast?: boolean }>`
   }
 `;
 
-const ContentContainer = styled.div`
+const ContentContainer = styled.div<{ contrast?: boolean }>`
   margin: 10% 0;
+  margin-left: ${({ contrast }) => (contrast ? "auto" : "0")};
   height: 100vh;
 `;
 
@@ -59,11 +60,12 @@ const ScrollableElement = styled(Element)`
   scroll-snap-align: start;
 `;
 
-const TechBadgesContainer = styled.div`
+const TechBadgesContainer = styled.div<{ contrast?: boolean }>`
   display: flex;
   flex-direction: column;
   gap: 20px;
   max-width: 160px;
+  margin-left: ${({ contrast }) => (contrast ? "auto" : "0")};
 
   @media ${device.laptop} {
     max-width: 40vw;
@@ -72,27 +74,28 @@ const TechBadgesContainer = styled.div`
   }
 `;
 
-const ProjectImageContainer = styled.div`
+const ProjectImageContainer = styled.div<{ contrast?: boolean }>`
   position: absolute;
-  right: -10%;
-  top: 30%;
-  width: 75vw;
+  ${({ contrast }) => (contrast ? "left: 0;" : "right: 0;")}
+  bottom: 20%;
+  width: 70vw;
   height: 40vh;
 
   @media ${device.mobileL} {
-    top: 30%;
-    width: 60vw;
+    ${({ contrast }) => (contrast ? "left: -10%;" : "right: -10%;")}
+    width: 70vw;
     height: 60vh;
   }
 
   @media ${device.laptop} {
-    top: 12%;
-    width: 40vw;
+    bottom: 12%;
+    width: 50vw;
     height: 60vh;
   }
 
   .projectImage {
-    border-radius: 8px 0 0 8px;
+    border-radius: ${({ contrast }) =>
+      contrast ? "0 8px 8px 0" : "8px 0 0 8px"};
   }
 `;
 
@@ -108,12 +111,17 @@ const ProjectSection = (props: ProjectSectionProps) => {
   } = props;
   return (
     <ScrollableElement name={`section-${sectionIndex}`}>
-      <ResponsiveContainer direction="column" withPadding contrast={contrast}>
-        <ContentContainer>
+      <ResponsiveContainer
+        direction="column"
+        contrast={contrast}
+        alignItems={contrast ? "flex-end" : "flex-start"}
+        withPadding
+      >
+        <ContentContainer contrast={contrast}>
           <Tag contrast={contrast}>{tag}</Tag>
           <Title contrast={contrast}>{title}</Title>
           <Description contrast={contrast}>{description}</Description>
-          <TechBadgesContainer>
+          <TechBadgesContainer contrast={contrast}>
             {techs.map((tech, index) => (
               <TechBadge
                 key={`tech-${index}`}
@@ -126,7 +134,7 @@ const ProjectSection = (props: ProjectSectionProps) => {
             ))}
           </TechBadgesContainer>
         </ContentContainer>
-        <ProjectImageContainer>
+        <ProjectImageContainer contrast={contrast}>
           <Image
             src={imageUrl}
             alt={title}
