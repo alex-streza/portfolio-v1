@@ -4,39 +4,64 @@ import { useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import styled, { useTheme } from "styled-components";
 
-const NavBarSocial = styled.div`
-  background-color: #ffffff;
+interface SocialLinksProps {
+  socialLinks?: any[];
+  isContact?: boolean;
+}
+
+const NavBarSocial = styled.div<{ isContact?: boolean }>`
+  background-color: transparent;
   height: 100%;
   display: flex;
-  align-items: center;
+  align-items: ${({ isContact }) => (isContact ? "flex-start" : "center")};
   justify-content: center;
   flex-direction: column;
-  margin-top: 48px;
+  margin-top: ${({ isContact }) => (isContact ? "0" : "48px")};
 
-  @media ${device.mobileL} {
-    margin-top: 100px;
+  @media ${device.mobileS} {
+    margin-top: ${({ isContact }) => (isContact ? "0" : "100px")};
   }
 
   @media ${device.laptop} {
-    width: 33%;
+    background-color: #ffffff;
+    width: ${({ isContact }) => (isContact ? "initial" : "33%")};
     margin-top: 0;
 
-    flex-direction: row;
+    flex-direction: ${({ isContact }) => (isContact ? "column" : "row")};
   }
 `;
 
-const NavBarSocialItem = styled.a<{ color?: string }>`
+const NavBarSocialItem = styled.a<{ color?: string; isContact?: boolean }>`
   margin-bottom: 20px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+
   svg {
     path {
       transition: fill 0.2s ease-in-out;
       fill: ${({ color }) => color};
     }
   }
+  h2 {
+    transition: fill 0.2s ease-in-out;
+    color: ${({ color }) => color};
+  }
+
   @media ${device.laptop} {
     margin-bottom: 0;
-    margin-right: 40px;
+    margin: ${({ isContact }) => (isContact ? "0 0 20px 0" : "0 40px 0 0")};
   }
+
+  :visited,
+  :link {
+    color: #000000;
+  }
+`;
+
+const IconLabel = styled.h2`
+  font-size: 20px;
+  margin-left: 12px;
 `;
 
 const socialIcons = [
@@ -51,11 +76,12 @@ const socialIcons = [
   { name: "dribble", href: "https://dribbble.com/snappy_guy" },
 ];
 
-const SocialLinks = () => {
+const SocialLinks = (props: SocialLinksProps) => {
   const isTablet = useMediaQuery({ minWidth: 768 });
   const iconSize = isTablet ? "40px" : "36px";
+  const { socialLinks = socialIcons, isContact } = props;
   const [icons, setIcons] = useState(
-    socialIcons.map((icon) => ({ ...icon, color: "#000000" }))
+    socialLinks.map((icon) => ({ ...icon, color: "#000000" }))
   );
   const theme = useTheme();
 
@@ -68,10 +94,10 @@ const SocialLinks = () => {
     ]);
 
   const onMouseLeave = () =>
-    setIcons([...socialIcons.map((icon) => ({ ...icon, color: "#000000" }))]);
+    setIcons([...socialLinks.map((icon) => ({ ...icon, color: "#000000" }))]);
 
   return (
-    <NavBarSocial>
+    <NavBarSocial isContact={isContact}>
       {icons.map((icon, index) => (
         <NavBarSocialItem
           key={`social-link-${index}`}
@@ -79,8 +105,10 @@ const SocialLinks = () => {
           onMouseEnter={() => onMouseEnter(index)}
           onMouseLeave={onMouseLeave}
           color={icon.color}
+          isContact={isContact}
         >
-          <Icon name={icon.name} width={iconSize} />
+          <Icon name={icon.name} width={icon.size ?? iconSize} />
+          {icon.username && <IconLabel>{icon.username}</IconLabel>}
         </NavBarSocialItem>
       ))}
     </NavBarSocial>

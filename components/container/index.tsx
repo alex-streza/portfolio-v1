@@ -1,13 +1,12 @@
-import styled from "styled-components";
+import styled, { CSSObject } from "styled-components";
 import { theme } from "types/theme";
 import { device } from "./device";
 
 interface ResponsiveContainerProps {
   children: JSX.Element | JSX.Element[] | any;
-  direction?: "row" | "column";
-  alignItems?: "flex-start" | "flex-end" | "center";
   withNav?: boolean;
   contrast?: boolean;
+  style?: CSSObject;
   withPadding?: boolean;
 }
 
@@ -29,8 +28,6 @@ const calculateHeight = (withNav?: boolean, withPadding?: boolean) => {
 
 export const Container = styled.div<ResponsiveContainerProps>`
   display: flex;
-  flex-direction: ${({ direction }) => direction};
-  align-items: ${({ alignItems }) => alignItems};
   padding: 0 20px;
   position: relative;
   background-color: ${({ contrast, theme }) =>

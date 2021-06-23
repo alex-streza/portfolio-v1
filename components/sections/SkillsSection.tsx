@@ -27,7 +27,6 @@ const Description = styled.p<{ contrast?: boolean }>`
 
 const SectionContainer = styled(Element)`
   scroll-snap-align: start;
-  height: 100vh;
 `;
 
 const SkillsContainer = styled.div`
@@ -91,7 +90,13 @@ const SkillsSection = () => {
   const isPhone = useMediaQuery({ maxWidth: "425px" });
   return (
     <SectionContainer name="section-2">
-      <ResponsiveContainer alignItems="center" direction="column">
+      <ResponsiveContainer
+        style={{
+          flexDirection: "column",
+          alignItems: "center",
+          height: "unset",
+        }}
+      >
         <Title>Skills</Title>
         <Description>Love to learn and deliver</Description>
         <SkillsContainer>

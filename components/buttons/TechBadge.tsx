@@ -24,7 +24,7 @@ const calculateMaxWidth = (
     return "32px";
   } else if (isSmall) {
     return "60px";
-  } else return "80px";
+  } else return "48px";
 };
 
 const BadgeContainer = styled.div<{
@@ -37,7 +37,6 @@ const BadgeContainer = styled.div<{
   border-radius: 8px;
   background-color: #ffffff;
   display: flex;
-  max-width: 32px;
   padding: 14px;
   align-items: center;
   justify-content: start;

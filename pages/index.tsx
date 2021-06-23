@@ -2,6 +2,7 @@ import NavBar from "components/navBar";
 import HomeSection from "components/sections/HomeSection";
 import ProjectSection from "components/sections/ProjectSection";
 import SkillsSection from "components/sections/SkillsSection";
+import ContactSection from "components/sections/ContactSection";
 import { Fragment, useContext } from "react";
 import { Context } from "react-responsive";
 import styled from "styled-components";
@@ -43,6 +44,7 @@ export default function Home() {
           contrast
         />
         <SkillsSection />
+        <ContactSection />
       </SectionsContainer>
     </Fragment>
   );

@@ -2,6 +2,7 @@ import Button from "components/buttons";
 import ResponsiveContainer from "components/container";
 import { device } from "components/container/device";
 import SocialLinks from "components/navBar/SocialLinks";
+import { useMediaQuery } from "react-responsive";
 import { Element } from "react-scroll";
 import styled from "styled-components";
 
@@ -74,13 +75,23 @@ const SocialLinksContainer = styled.div`
 `;
 
 const HomeSection = () => {
+  const isPhone = useMediaQuery({ maxWidth: "425px" });
   return (
     <Element name="section-0">
       <Illustration />
-      <ResponsiveContainer direction="column" withNav>
+      <ResponsiveContainer
+        style={{
+          flexDirection: "column",
+        }}
+        withNav
+      >
         <Title>Wonderfully Crafted Web Experiences</Title>
         <Subtitle>Every project is unique and so is my work</Subtitle>
-        <Button label="Contact me" icon="mail" />
+        <Button
+          label="Contact me"
+          icon="mail"
+          style={{ maxWidth: isPhone ? "160px" : "180px" }}
+        />
       </ResponsiveContainer>
       <SocialLinksContainer>
         <SocialLinks />

@@ -32,12 +32,27 @@ const NavBarMenu = styled.ul`
 
 const NavBarItem = styled(Link)`
   font-size: 16px;
+  color: #ffffff;
+  text-align: center;
+  cursor: pointer;
 
   @media ${device.tablet} {
     font-size: 24px;
     line-height: 36px;
   }
-  color: #ffffff;
+
+  :after {
+    transition: all ease-in-out 0.2s;
+    background: none repeat scroll 0 0 ${({ theme }) => theme.palette.secondary};
+    content: "";
+    display: block;
+    height: 2px;
+    width: 0;
+  }
+
+  :hover:after {
+    width: 100%;
+  }
 `;
 const NavBarLogo = styled.a`
   margin-right: auto;
@@ -47,7 +62,7 @@ const NavBarLogo = styled.a`
   text-decoration: none;
   min-width: 110px;
 
-  @media ${device.laptop} {
+  @media ${device.tablet} {
     min-width: 150px;
     background-image: url("/icons/logo_desktop.svg");
   }

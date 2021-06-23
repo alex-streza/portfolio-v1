@@ -11,10 +11,13 @@
     "load-icons": "node ./utils/loadIcons.js && npm run format"
   },
   "dependencies": {
+    "@types/nodemailer": "^6.4.2",
     "@types/react-responsive": "^8.0.2",
     "@types/react-scroll": "^1.8.2",
     "@types/tinycolor2": "^1.4.2",
+    "dotenv": "^10.0.0",
     "next": "11.0.0",
+    "nodemailer": "^6.6.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-responsive": "^8.2.0",

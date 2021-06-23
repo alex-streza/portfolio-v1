@@ -78,24 +78,34 @@ const ProjectImageContainer = styled.div<{ contrast?: boolean }>`
   position: absolute;
   ${({ contrast }) => (contrast ? "left: 0;" : "right: 0;")}
   bottom: 20%;
-  width: 70vw;
-  height: 40vh;
+  width: 90%;
+  height: auto;
+
+  > div {
+    position: unset !important;
+  }
 
   @media ${device.mobileL} {
     ${({ contrast }) => (contrast ? "left: -10%;" : "right: -10%;")}
-    width: 70vw;
-    height: 60vh;
+    bottom: 10%;
+  }
+
+  @media ${device.tablet} {
+    width: 80vw;
   }
 
   @media ${device.laptop} {
-    bottom: 12%;
+    bottom: 16%;
     width: 50vw;
-    height: 60vh;
   }
 
   .projectImage {
     border-radius: ${({ contrast }) =>
       contrast ? "0 8px 8px 0" : "8px 0 0 8px"};
+    object-fit: contain;
+    width: 100% !important;
+    position: relative !important;
+    height: unset !important;
   }
 `;
 
@@ -112,9 +122,11 @@ const ProjectSection = (props: ProjectSectionProps) => {
   return (
     <ScrollableElement name={`section-${sectionIndex}`}>
       <ResponsiveContainer
-        direction="column"
+        style={{
+          flexDirection: "column",
+          alignItems: contrast ? "flex-end" : "flex-start",
+        }}
         contrast={contrast}
-        alignItems={contrast ? "flex-end" : "flex-start"}
         withPadding
       >
         <ContentContainer contrast={contrast}>
