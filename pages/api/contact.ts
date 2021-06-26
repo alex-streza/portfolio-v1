@@ -3,7 +3,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 require("dotenv").config();
 const nodemailer = require("nodemailer");
 
-export default function (req: NextApiRequest, res: NextApiResponse) {
+const sendEmail = (req: NextApiRequest, res: NextApiResponse) => {
   console.log("Received request");
   const { name, email, message } = req.body;
 
@@ -40,4 +40,6 @@ export default function (req: NextApiRequest, res: NextApiResponse) {
     else console.log(info);
   });
   res.status(200).end("Email sent successfully!");
-}
+};
+
+export default sendEmail;
