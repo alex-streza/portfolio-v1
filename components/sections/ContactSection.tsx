@@ -4,9 +4,12 @@ import { device } from "components/container/device";
 import Input from "components/inputs";
 import TextArea from "components/inputs/TextArea";
 import SocialLinks from "components/navBar/SocialLinks";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import { Element } from "react-scroll";
 import styled from "styled-components";
+import Illustration from "components/illustrations";
+import useWindowDimensions from "utils/useWindowDimensions";
 
 const SectionContainer = styled(Element)`
   scroll-snap-align: start;
@@ -100,20 +103,17 @@ const socialIcons = [
 ];
 
 const ContactSection = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
+  const { height, width } = useWindowDimensions();
+
   const [submitted, setSubmitted] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isValid, submitCount },
+  } = useForm();
 
-  const inputMargin = { marginBottom: "20px" };
-
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
-    let data = {
-      name,
-      email,
-      message,
-    };
+  const inputMargin = { marginBottom: "12px" };
+  const onSubmit = (data: any) => {
     fetch("/api/contact", {
       method: "POST",
       headers: {
@@ -124,9 +124,6 @@ const ContactSection = () => {
     }).then((res) => {
       if (res.status === 200) {
         setSubmitted(true);
-        setName("");
-        setEmail("");
-        setMessage("");
       }
     });
   };
@@ -141,29 +138,40 @@ const ContactSection = () => {
       >
         <Title>Contact me</Title>
         <ContactContentContainer>
-          <ContactForm>
+          <ContactForm onSubmit={handleSubmit(onSubmit)}>
             <Input
-              name="name"
               label="Name"
               style={inputMargin}
-              onChange={(ev) => setName(ev.currentTarget.value)}
+              error={errors?.name?.message}
+              {...register("name", {
+                required: "Please type your name.",
+                maxLength: 60,
+              })}
             />
             <Input
-              name="email"
               label="E-mail"
               style={inputMargin}
-              onChange={(ev) => setEmail(ev.currentTarget.value)}
+              error={errors?.email?.message}
+              {...register("email", {
+                required: "Please type your email address.",
+                pattern:
+                  /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+              })}
             />
             <TextArea
-              name="message"
               label="Message"
-              onChange={(ev) => setMessage(ev.currentTarget.value)}
+              error={errors?.message?.message}
+              {...register("message", {
+                required: "Please type a message.",
+                maxLength: 200,
+              })}
             />
             <Button
               label="Send"
               icon="mail"
+              type="submit"
+              disabled={!isValid && submitCount > 0}
               style={{ marginTop: "20px", width: "120px" }}
-              onClick={handleSubmit}
             />
           </ContactForm>
           <Separator />
@@ -173,6 +181,11 @@ const ContactSection = () => {
           </SocialLinksWrapper>
         </ContactContentContainer>
       </ResponsiveContainer>
+      {/* <Illustration
+        name="footerIllustration"
+        height={height * 0.6 + "px"}
+        width={width + "px"}
+      /> */}
     </SectionContainer>
   );
 };

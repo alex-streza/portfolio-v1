@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import Icon from "components/icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { device } from "components/container/device";
+import { useMediaQuery } from "react-responsive";
 
 interface BadgeProps {
   label: string;
@@ -45,18 +46,20 @@ const BadgeContainer = styled.div<{
   max-width: ${({ isSmall, active }) =>
     calculateMaxWidth(isSmall, active, true)};
 
-  @media ${device.laptop} {
-    max-width: ${({ isSmall, active }) => calculateMaxWidth(isSmall, active)};
+  @media ${device.tablet} {
+    &:hover {
+      ${({ theme }) => theme.boxShadow};
+      transition: max-width 0.2s ease-in-out;
+      max-width: 140px;
+
+      .tech-label {
+        display: block;
+      }
+    }
   }
 
-  :hover {
-    ${({ theme }) => theme.boxShadow};
-    transition: max-width 0.2s ease-in-out;
-    max-width: 140px;
-
-    .tech-label {
-      display: block;
-    }
+  @media ${device.laptop} {
+    max-width: ${({ isSmall, active }) => calculateMaxWidth(isSmall, active)};
   }
 `;
 
@@ -69,13 +72,15 @@ const Label = styled.span<{ active?: boolean }>`
 const TechBadge = (props: BadgeProps) => {
   const { label = "", icon, isSmall, contrast } = props;
   const iconSize = isSmall ? "32px" : "44px";
+
   const [active, setActive] = useState(false);
+
   return (
     <BadgeContainer
       isSmall={isSmall}
       active={active}
       contrast={contrast}
-      onMouseLeave={() => setActive(true)}
+      onMouseLeave={() => setActive(!isSmall)}
     >
       <Icon name={icon} width={iconSize} />
       <Label className="tech-label" active={active}>

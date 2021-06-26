@@ -1,6 +1,6 @@
-import { device } from "components/container/device";
+import { device, size } from "components/container/device";
 import { Element } from "react-scroll";
-import styled from "styled-components";
+import styled, { CSSObject } from "styled-components";
 import ResponsiveContainer from "components/container";
 import SkillCard from "components/cards";
 import TechBadge from "components/buttons/TechBadge";
@@ -87,7 +87,7 @@ const techs = [
 ];
 
 const SkillsSection = () => {
-  const isPhone = useMediaQuery({ maxWidth: "425px" });
+  const isPhoneOrTablet = useMediaQuery({ maxWidth: size.tablet });
   return (
     <SectionContainer name="section-2">
       <ResponsiveContainer
@@ -95,6 +95,7 @@ const SkillsSection = () => {
           flexDirection: "column",
           alignItems: "center",
           height: "unset",
+          minHeight: "100vh",
         }}
       >
         <Title>Skills</Title>
@@ -111,7 +112,7 @@ const SkillsSection = () => {
             <TechBadge
               icon={techs[0]}
               label={techs[0].charAt(0).toUpperCase() + techs[0].slice(1)}
-              isSmall={isPhone}
+              isSmall={isPhoneOrTablet}
               contrast
             />
           </TechBadgesGroup>
@@ -121,7 +122,7 @@ const SkillsSection = () => {
                 key={`tech-${index}`}
                 icon={tech}
                 label={tech.charAt(0).toUpperCase() + tech.slice(1)}
-                isSmall={isPhone}
+                isSmall={isPhoneOrTablet}
                 contrast
               />
             ))}
@@ -132,7 +133,7 @@ const SkillsSection = () => {
                 key={`tech-${index}`}
                 icon={tech}
                 label={tech.charAt(0).toUpperCase() + tech.slice(1)}
-                isSmall={isPhone}
+                isSmall={isPhoneOrTablet}
                 contrast
               />
             ))}
@@ -143,7 +144,7 @@ const SkillsSection = () => {
                 key={`tech-${index}`}
                 icon={tech}
                 label={tech.charAt(0).toUpperCase() + tech.slice(1)}
-                isSmall={isPhone}
+                isSmall={isPhoneOrTablet}
                 contrast
               />
             ))}
@@ -154,7 +155,7 @@ const SkillsSection = () => {
               techs[techs.length - 1].charAt(0).toUpperCase() +
               techs[techs.length - 1].slice(1)
             }
-            isSmall={isPhone}
+            isSmall={isPhoneOrTablet}
             contrast
           />
         </TechBadgesContainer>

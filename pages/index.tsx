@@ -2,10 +2,15 @@ import NavBar from "components/navBar";
 import HomeSection from "components/sections/HomeSection";
 import ProjectSection from "components/sections/ProjectSection";
 import SkillsSection from "components/sections/SkillsSection";
-import ContactSection from "components/sections/ContactSection";
+import dynamic from "next/dynamic";
 import { Fragment, useContext } from "react";
 import { Context } from "react-responsive";
 import styled from "styled-components";
+
+const ContactSection = dynamic(
+  () => import("components/sections/ContactSection"),
+  { ssr: false }
+);
 
 const isServer = typeof window === "undefined";
 

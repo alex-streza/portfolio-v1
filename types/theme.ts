@@ -15,6 +15,8 @@ const theme: DefaultTheme = {
   palette: {
     primary: "#6700EE",
     secondary: "#37DBFF",
+    error: "#f34213",
+    disabled: "#A7BED3",
   },
 };
 

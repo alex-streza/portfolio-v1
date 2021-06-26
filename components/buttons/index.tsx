@@ -13,7 +13,8 @@ export interface ButtonProps extends React.HTMLProps<HTMLButtonElement> {
 const StyledButton = styled.button`
   color: #ffffff;
   border-radius: ${({ theme }) => theme.borderRadius};
-  background-color: ${({ theme }) => theme.palette.secondary};
+  background-color: ${({ theme, disabled }) =>
+    !disabled ? theme.palette.secondary : theme.palette.disabled};
   height: 48px;
   border: none;
   padding: 4px 12px;
@@ -21,6 +22,7 @@ const StyledButton = styled.button`
   cursor: pointer;
   align-items: center;
   display: flex;
+  cursor: ${({ disabled }) => disabled && "not-allowed"};
 
   @media ${device.mobileL} {
     max-width: 200px;
@@ -29,13 +31,13 @@ const StyledButton = styled.button`
   }
 
   :hover {
-    background-color: ${({ theme }) =>
-      tinycolor(theme.palette.secondary).lighten().toHexString()};
+    background-color: ${({ theme, disabled }) =>
+      !disabled && tinycolor(theme.palette.secondary).lighten().toHexString()};
   }
 
   :active {
-    background-color: ${({ theme }) =>
-      tinycolor(theme.palette.secondary).darken().toHexString()};
+    background-color: ${({ theme, disabled }) =>
+      !disabled && tinycolor(theme.palette.secondary).darken().toHexString()};
   }
 
   svg {
@@ -44,7 +46,7 @@ const StyledButton = styled.button`
 `;
 
 export const Button: React.FC<ButtonProps> = (props: ButtonProps) => {
-  const { icon, label, style, onClick } = props;
+  const { icon, label, ...rest } = props;
   const isLargePhone = useMediaQuery({ minWidth: 425 });
   const isDesktop = useMediaQuery({ minWidth: 1024 });
   let iconSize = "24px";
@@ -52,7 +54,7 @@ export const Button: React.FC<ButtonProps> = (props: ButtonProps) => {
   else if (isDesktop) iconSize = "36px";
 
   return (
-    <StyledButton type="button" style={style} onClick={onClick}>
+    <StyledButton type="button" {...(rest as any)}>
       {label}
       {icon && <Icon name={icon} width={iconSize} />}
     </StyledButton>
