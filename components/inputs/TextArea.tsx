@@ -70,4 +70,5 @@ const TextArea = forwardRef((props: InputProps, ref: any) => {
   );
 });
 
+TextArea.displayName = "TextArea";
 export default TextArea;
