@@ -3,36 +3,50 @@ import Icon from "components/icons";
 import { useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import styled, { useTheme } from "styled-components";
+import { Fade } from "react-awesome-reveal";
 
 interface SocialLinksProps {
   socialLinks?: any[];
   isContact?: boolean;
+  isProject?: boolean;
+  contrast?: boolean;
 }
 
-const NavBarSocial = styled.div<{ isContact?: boolean }>`
+const SocialLinksContainer = styled.div<SocialLinksProps>`
   background-color: transparent;
-  height: 100%;
+
+  height: ${({ isProject }) => (isProject ? "initial" : " 100%")};
   display: flex;
   align-items: ${({ isContact }) => (isContact ? "flex-start" : "center")};
-  justify-content: center;
-  flex-direction: column;
-  margin-top: ${({ isContact }) => (isContact ? "0" : "48px")};
+  justify-content: ${({ isProject }) => (isProject ? "flex-start" : "center")};
+  flex-direction: ${({ isProject }) => (isProject ? "row" : "column")};
+  margin-top: ${({ isContact, isProject }) =>
+    isContact || isProject ? "0" : "48px"};
 
   @media ${device.mobileS} {
-    margin-top: ${({ isContact }) => (isContact ? "0" : "100px")};
+    margin-top: ${({ isContact, isProject }) =>
+      isContact || isProject ? "0" : "100px"};
   }
 
   @media ${device.laptop} {
-    background-color: #ffffff;
-    width: ${({ isContact }) => (isContact ? "initial" : "33%")};
+    background-color: ${({ isProject }) =>
+      isProject ? "transparent" : "#ffffff"};
+    width: ${({ isContact, isProject }) =>
+      isContact || isProject ? "initial" : "33%"};
     margin-top: 0;
 
     flex-direction: ${({ isContact }) => (isContact ? "column" : "row")};
   }
 `;
 
-const NavBarSocialItem = styled.a<{ color?: string; isContact?: boolean }>`
+const SocialLinkItem = styled.a<{
+  color?: string;
+  isContact?: boolean;
+  isProject?: boolean;
+}>`
   margin-bottom: 20px;
+  margin-right: ${({ isContact, isProject }) =>
+    isContact || isProject ? "20px" : "0"};
   text-decoration: none;
   display: flex;
   align-items: center;
@@ -50,7 +64,12 @@ const NavBarSocialItem = styled.a<{ color?: string; isContact?: boolean }>`
 
   @media ${device.laptop} {
     margin-bottom: 0;
-    margin: ${({ isContact }) => (isContact ? "0 0 20px 0" : "0 40px 0 0")};
+    ${({ isContact, isProject }) => {
+      let margin = "margin-right: 40px";
+      if (isContact) margin = "margin-bottom: 20px";
+      if (isProject) margin = "margin-right: 20px";
+      return margin;
+    }};
   }
 
   :visited,
@@ -79,9 +98,10 @@ const socialIcons = [
 const SocialLinks = (props: SocialLinksProps) => {
   const isTablet = useMediaQuery({ minWidth: 768 });
   const iconSize = isTablet ? "40px" : "36px";
-  const { socialLinks = socialIcons, isContact } = props;
+  const { socialLinks = socialIcons, isContact, isProject, contrast } = props;
+  const initialColor = contrast ? "#ffffff" : "#000000";
   const [icons, setIcons] = useState(
-    socialLinks.map((icon) => ({ ...icon, color: "#000000" }))
+    socialLinks.map((icon) => ({ ...icon, color: initialColor }))
   );
   const theme = useTheme();
 
@@ -89,29 +109,39 @@ const SocialLinks = (props: SocialLinksProps) => {
     setIcons([
       ...icons.map((icon, i) => ({
         ...icon,
-        color: i == index ? theme.palette.primary : icon.color,
+        color:
+          i == index
+            ? contrast
+              ? theme.palette.secondary
+              : theme.palette.primary
+            : icon.color,
       })),
     ]);
 
   const onMouseLeave = () =>
-    setIcons([...socialLinks.map((icon) => ({ ...icon, color: "#000000" }))]);
+    setIcons([
+      ...socialLinks.map((icon) => ({ ...icon, color: initialColor })),
+    ]);
 
   return (
-    <NavBarSocial isContact={isContact}>
-      {icons.map((icon, index) => (
-        <NavBarSocialItem
-          key={`social-link-${index}`}
-          href={icon.href}
-          onMouseEnter={() => onMouseEnter(index)}
-          onMouseLeave={onMouseLeave}
-          color={icon.color}
-          isContact={isContact}
-        >
-          <Icon name={icon.name} width={icon.size ?? iconSize} />
-          {icon.username && <IconLabel>{icon.username}</IconLabel>}
-        </NavBarSocialItem>
-      ))}
-    </NavBarSocial>
+    <SocialLinksContainer isContact={isContact} isProject={isProject}>
+      <Fade delay={500} cascade triggerOnce>
+        {icons.map((icon, index) => (
+          <SocialLinkItem
+            key={`social-link-${index}`}
+            href={icon.href}
+            onMouseEnter={() => onMouseEnter(index)}
+            onMouseLeave={onMouseLeave}
+            color={icon.color}
+            isContact={isContact}
+            isProject={isProject}
+          >
+            <Icon name={icon.name} width={icon.size ?? iconSize} />
+            {icon.username && <IconLabel>{icon.username}</IconLabel>}
+          </SocialLinkItem>
+        ))}
+      </Fade>
+    </SocialLinksContainer>
   );
 };
 

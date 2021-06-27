@@ -5,6 +5,7 @@ import ResponsiveContainer from "components/container";
 import SkillCard from "components/cards";
 import TechBadge from "components/buttons/TechBadge";
 import { useMediaQuery } from "react-responsive";
+import { Zoom, Fade } from "react-awesome-reveal";
 
 const Title = styled.h2<{ contrast?: boolean }>`
   color: ${({ contrast }) => (contrast ? "#ffffff" : "#000000")};
@@ -75,15 +76,22 @@ const skills = [
 ];
 
 const techs = [
-  "blender",
+  "figma",
+  "github",
+  "npm",
   "expressjs",
+  "docker",
+  "postgres",
+  "nextjs",
+  "react",
   "redux",
   "typescript",
-  "react",
-  "nextjs",
-  "postgres",
-  "docker",
   "mapbox",
+  "storybook",
+  "blender",
+  "nginx",
+  "webpack",
+  "circle_ci",
 ];
 
 const SkillsSection = () => {
@@ -98,66 +106,119 @@ const SkillsSection = () => {
           minHeight: "100vh",
         }}
       >
-        <Title>Skills</Title>
-        <Description>Love to learn and deliver</Description>
+        <Fade cascade triggerOnce>
+          <Title>Skills</Title>
+          <Description>Love to learn and deliver</Description>
+        </Fade>
         <SkillsContainer>
-          {skills.map((skill, index) => (
-            <SkillCard key={`skill-${index}`} {...skill} />
-          ))}
+          <Fade delay={500} cascade triggerOnce>
+            {skills.map((skill, index) => (
+              <SkillCard key={`skill-${index}`} {...skill} />
+            ))}
+          </Fade>
         </SkillsContainer>
-        <Title>Tech & Tools</Title>
-        <Description>Been there done that</Description>
+        <Fade delay={1000} cascade triggerOnce>
+          <Title>Tech & Tools</Title>
+          <Description>Used and tinkered with</Description>
+        </Fade>
         <TechBadgesContainer>
           <TechBadgesGroup>
+            <Zoom delay={1500} triggerOnce>
+              <TechBadge
+                icon={techs[0]}
+                label={techs[0].charAt(0).toUpperCase() + techs[0].slice(1)}
+                isSmall={isPhoneOrTablet}
+                hideHover={isPhoneOrTablet}
+                contrast
+              />
+            </Zoom>
+          </TechBadgesGroup>
+          {!isPhoneOrTablet && (
+            <TechBadgesGroup>
+              <Zoom delay={2000} damping={0.1} cascade triggerOnce>
+                {techs.slice(1, 3).map((tech, index) => (
+                  <TechBadge
+                    key={`tech-${index}`}
+                    icon={tech}
+                    label={tech.charAt(0).toUpperCase() + tech.slice(1)}
+                    isSmall={isPhoneOrTablet}
+                    hideHover={isPhoneOrTablet}
+                    contrast
+                  />
+                ))}
+              </Zoom>
+            </TechBadgesGroup>
+          )}
+          <TechBadgesGroup>
+            <Zoom delay={2500} damping={0.1} cascade triggerOnce>
+              {techs.slice(3, 6).map((tech, index) => (
+                <TechBadge
+                  key={`tech-${index}`}
+                  icon={tech}
+                  label={tech.charAt(0).toUpperCase() + tech.slice(1)}
+                  isSmall={isPhoneOrTablet}
+                  hideHover={isPhoneOrTablet}
+                  contrast
+                />
+              ))}
+            </Zoom>
+          </TechBadgesGroup>
+          <TechBadgesGroup>
+            <Zoom delay={3000} damping={0.1} cascade triggerOnce>
+              {techs.slice(6, 10).map((tech, index) => (
+                <TechBadge
+                  key={`tech-${index}`}
+                  icon={tech}
+                  label={tech.charAt(0).toUpperCase() + tech.slice(1)}
+                  isSmall={isPhoneOrTablet}
+                  hideHover={isPhoneOrTablet}
+                  contrast
+                />
+              ))}
+            </Zoom>
+          </TechBadgesGroup>
+          <TechBadgesGroup>
+            <Zoom delay={3500} damping={0.1} cascade triggerOnce>
+              {techs.slice(10, 13).map((tech, index) => (
+                <TechBadge
+                  key={`tech-${index}`}
+                  icon={tech}
+                  label={tech.charAt(0).toUpperCase() + tech.slice(1)}
+                  isSmall={isPhoneOrTablet}
+                  hideHover={isPhoneOrTablet}
+                  contrast
+                />
+              ))}
+            </Zoom>
+          </TechBadgesGroup>
+          {!isPhoneOrTablet && (
+            <TechBadgesGroup>
+              <Zoom delay={4000} damping={0.1} cascade triggerOnce>
+                {techs.slice(13, 15).map((tech, index) => (
+                  <TechBadge
+                    key={`tech-${index}`}
+                    icon={tech}
+                    label={tech.charAt(0).toUpperCase() + tech.slice(1)}
+                    isSmall={isPhoneOrTablet}
+                    hideHover={isPhoneOrTablet}
+                    contrast
+                  />
+                ))}
+              </Zoom>
+            </TechBadgesGroup>
+          )}
+          <Zoom delay={4500} triggerOnce>
             <TechBadge
-              icon={techs[0]}
-              label={techs[0].charAt(0).toUpperCase() + techs[0].slice(1)}
+              icon={techs[techs.length - 1]}
+              label={
+                techs[techs.length - 1].charAt(0).toUpperCase() +
+                techs[techs.length - 1].slice(1)
+              }
               isSmall={isPhoneOrTablet}
               contrast
+              hideHover={isPhoneOrTablet}
             />
-          </TechBadgesGroup>
-          <TechBadgesGroup>
-            {techs.slice(1, 3).map((tech, index) => (
-              <TechBadge
-                key={`tech-${index}`}
-                icon={tech}
-                label={tech.charAt(0).toUpperCase() + tech.slice(1)}
-                isSmall={isPhoneOrTablet}
-                contrast
-              />
-            ))}
-          </TechBadgesGroup>
-          <TechBadgesGroup>
-            {techs.slice(3, 6).map((tech, index) => (
-              <TechBadge
-                key={`tech-${index}`}
-                icon={tech}
-                label={tech.charAt(0).toUpperCase() + tech.slice(1)}
-                isSmall={isPhoneOrTablet}
-                contrast
-              />
-            ))}
-          </TechBadgesGroup>
-          <TechBadgesGroup>
-            {techs.slice(6, 8).map((tech, index) => (
-              <TechBadge
-                key={`tech-${index}`}
-                icon={tech}
-                label={tech.charAt(0).toUpperCase() + tech.slice(1)}
-                isSmall={isPhoneOrTablet}
-                contrast
-              />
-            ))}
-          </TechBadgesGroup>
-          <TechBadge
-            icon={techs[techs.length - 1]}
-            label={
-              techs[techs.length - 1].charAt(0).toUpperCase() +
-              techs[techs.length - 1].slice(1)
-            }
-            isSmall={isPhoneOrTablet}
-            contrast
-          />
+          </Zoom>
         </TechBadgesContainer>
       </ResponsiveContainer>
     </SectionContainer>

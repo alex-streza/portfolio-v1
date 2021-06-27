@@ -1,10 +1,13 @@
 import TechBadge from "components/buttons/TechBadge";
 import ResponsiveContainer from "components/container";
 import { device } from "components/container/device";
+import SocialLinks from "components/navBar/SocialLinks";
+import Image from "next/image";
 import React from "react";
+import { Zoom, Fade, Slide } from "react-awesome-reveal";
 import { Element } from "react-scroll";
 import styled from "styled-components";
-import Image from "next/image";
+import { SocialLink } from "types/Project";
 
 interface ProjectSectionProps {
   tag: string;
@@ -12,13 +15,19 @@ interface ProjectSectionProps {
   description: string;
   imageUrl: string;
   techs: string[];
+  socialLinks: SocialLink[];
   contrast?: boolean;
   sectionIndex?: number;
 }
 
 const Tag = styled.h3<{ contrast?: boolean }>`
+  margin-top: 4px;
   color: ${({ contrast, theme }) =>
     contrast ? theme.palette.secondary : theme.palette.primary};
+
+  @media ${device.laptop} {
+    margin-top: 20px;
+  }
 `;
 
 const Title = styled.h2<{ contrast?: boolean }>`
@@ -53,7 +62,6 @@ const Description = styled.p<{ contrast?: boolean }>`
 const ContentContainer = styled.div<{ contrast?: boolean }>`
   margin: 10% 0;
   margin-left: ${({ contrast }) => (contrast ? "auto" : "0")};
-  height: 100vh;
 `;
 
 const ScrollableElement = styled(Element)`
@@ -118,6 +126,7 @@ const ProjectSection = (props: ProjectSectionProps) => {
     imageUrl,
     contrast,
     sectionIndex = 1,
+    socialLinks,
   } = props;
   return (
     <ScrollableElement name={`section-${sectionIndex}`}>
@@ -125,35 +134,64 @@ const ProjectSection = (props: ProjectSectionProps) => {
         style={{
           flexDirection: "column",
           alignItems: contrast ? "flex-end" : "flex-start",
+          minHeight: "100vh",
+          height: "initial",
         }}
         contrast={contrast}
         withPadding
       >
         <ContentContainer contrast={contrast}>
-          <Tag contrast={contrast}>{tag}</Tag>
-          <Title contrast={contrast}>{title}</Title>
-          <Description contrast={contrast}>{description}</Description>
+          <SocialLinks
+            socialLinks={socialLinks}
+            isProject
+            contrast={contrast}
+          />
+          {!contrast && (
+            <Slide delay={750} cascade triggerOnce>
+              <Tag contrast={contrast}>{tag}</Tag>
+              <Title contrast={contrast}>{title}</Title>
+            </Slide>
+          )}
+          {contrast && (
+            <Fade delay={1000}>
+              <Tag contrast={contrast}>{tag}</Tag>
+              <Title contrast={contrast}>{title}</Title>
+            </Fade>
+          )}
+          <Fade delay={1500} cascade triggerOnce>
+            <Description contrast={contrast}>{description}</Description>
+          </Fade>
           <TechBadgesContainer contrast={contrast}>
-            {techs.map((tech, index) => (
-              <TechBadge
-                key={`tech-${index}`}
-                icon={tech}
-                description=""
-                label={tech.charAt(0).toUpperCase() + tech.slice(1)}
-                isSmall
-                contrast
-              />
-            ))}
+            <Zoom
+              delay={2000}
+              damping={0.2}
+              style={{ zIndex: 10 }}
+              cascade
+              triggerOnce
+            >
+              {techs.map((tech, index) => (
+                <TechBadge
+                  key={`tech-${index}`}
+                  icon={tech}
+                  description=""
+                  label={tech.charAt(0).toUpperCase() + tech.slice(1)}
+                  isSmall
+                  contrast
+                />
+              ))}
+            </Zoom>
           </TechBadgesContainer>
         </ContentContainer>
-        <ProjectImageContainer contrast={contrast}>
-          <Image
-            src={imageUrl}
-            alt={title}
-            className="projectImage"
-            layout="fill"
-          />
-        </ProjectImageContainer>
+        <Fade delay={1500} triggerOnce>
+          <ProjectImageContainer contrast={contrast}>
+            <Image
+              src={imageUrl}
+              alt={title}
+              className="projectImage"
+              layout="fill"
+            />
+          </ProjectImageContainer>
+        </Fade>
       </ResponsiveContainer>
     </ScrollableElement>
   );

@@ -5,6 +5,7 @@ import SocialLinks from "components/navBar/SocialLinks";
 import { useMediaQuery } from "react-responsive";
 import { Element } from "react-scroll";
 import styled from "styled-components";
+import { Slide, Fade } from "react-awesome-reveal";
 
 const Illustration = styled.figure`
   position: absolute;
@@ -85,13 +86,19 @@ const HomeSection = () => {
         }}
         withNav
       >
-        <Title>Wonderfully Crafted Web Experiences</Title>
-        <Subtitle>Every project is unique and so is my work</Subtitle>
-        <Button
-          label="Contact me"
-          icon="mail"
-          style={{ maxWidth: isPhone ? "160px" : "180px" }}
-        />
+        <Slide triggerOnce>
+          <Title>Wonderfully Crafted Web Experiences</Title>
+        </Slide>
+        <Fade delay={1000} triggerOnce>
+          <Subtitle>Every project is unique and so is my work</Subtitle>
+        </Fade>
+        <Slide delay={1000} triggerOnce>
+          <Button
+            label="Contact me"
+            icon="mail"
+            style={{ maxWidth: isPhone ? "160px" : "180px" }}
+          />
+        </Slide>
       </ResponsiveContainer>
       <SocialLinksContainer>
         <SocialLinks />

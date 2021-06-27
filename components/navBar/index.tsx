@@ -4,6 +4,7 @@ import styled from "styled-components";
 import SocialLinks from "components/navBar/SocialLinks";
 import { useMediaQuery } from "react-responsive";
 import { Link } from "react-scroll";
+import { Slide, Fade } from "react-awesome-reveal";
 
 const NavBarContainer = styled(Container)`
   display: flex;
@@ -23,6 +24,9 @@ const NavBarMenu = styled.ul`
   max-width: 320px;
   grid-template-columns: 1fr 1fr 1fr;
   width: 66%;
+  margin-block: 0;
+  place-content: center;
+  height: 100%;
   padding-right: 20px;
 
   @media ${device.tablet} {
@@ -35,10 +39,11 @@ const NavBarItem = styled(Link)`
   color: #ffffff;
   text-align: center;
   cursor: pointer;
+  margin-top: 4px;
 
   @media ${device.tablet} {
     font-size: 24px;
-    line-height: 36px;
+    line-height: 40px;
   }
 
   :after {
@@ -46,6 +51,7 @@ const NavBarItem = styled(Link)`
     background: none repeat scroll 0 0 ${({ theme }) => theme.palette.secondary};
     content: "";
     display: block;
+    margin-top: 4px;
     height: 2px;
     width: 0;
   }
@@ -77,16 +83,18 @@ const NavBar = () => {
     <NavBarContainer>
       <NavBarLogo href="/" />
       <NavBarMenu>
-        {menuItems.map((menuItem, index) => (
-          <NavBarItem
-            key={index}
-            to={`section-${index + 1}`}
-            duration={500}
-            smooth
-          >
-            {menuItem}
-          </NavBarItem>
-        ))}
+        <Fade delay={500} cascade triggerOnce>
+          {menuItems.map((menuItem, index) => (
+            <NavBarItem
+              key={index}
+              to={`section-${index + 1}`}
+              duration={500}
+              smooth
+            >
+              {menuItem}
+            </NavBarItem>
+          ))}
+        </Fade>
       </NavBarMenu>
       {isDesktop && <SocialLinks />}
     </NavBarContainer>

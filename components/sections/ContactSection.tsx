@@ -1,15 +1,16 @@
 import Button from "components/buttons";
 import ResponsiveContainer from "components/container";
-import { device } from "components/container/device";
+import { device, size } from "components/container/device";
+import FooterIllustration from "components/illustrations/FooterIllustration";
 import Input from "components/inputs";
 import TextArea from "components/inputs/TextArea";
 import SocialLinks from "components/navBar/SocialLinks";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useMediaQuery } from "react-responsive";
 import { Element } from "react-scroll";
 import styled from "styled-components";
-import Illustration from "components/illustrations";
-import useWindowDimensions from "utils/useWindowDimensions";
+import { Zoom, Slide, Fade } from "react-awesome-reveal";
 
 const SectionContainer = styled(Element)`
   scroll-snap-align: start;
@@ -52,7 +53,7 @@ const ContactContentContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
 
   @media ${device.tablet} {
@@ -103,14 +104,14 @@ const socialIcons = [
 ];
 
 const ContactSection = () => {
-  const { height, width } = useWindowDimensions();
-
   const [submitted, setSubmitted] = useState(false);
   const {
     register,
     handleSubmit,
     formState: { errors, isValid, submitCount },
   } = useForm();
+
+  const isLaptop = useMediaQuery({ minWidth: size.laptop });
 
   const inputMargin = { marginBottom: "12px" };
   const onSubmit = (data: any) => {
@@ -136,56 +137,58 @@ const ContactSection = () => {
           alignItems: "center",
         }}
       >
-        <Title>Contact me</Title>
+        <Fade triggerOnce>
+          <Title>Contact me</Title>
+        </Fade>
         <ContactContentContainer>
           <ContactForm onSubmit={handleSubmit(onSubmit)}>
-            <Input
-              label="Name"
-              style={inputMargin}
-              error={errors?.name?.message}
-              {...register("name", {
-                required: "Please type your name.",
-                maxLength: 60,
-              })}
-            />
-            <Input
-              label="E-mail"
-              style={inputMargin}
-              error={errors?.email?.message}
-              {...register("email", {
-                required: "Please type your email address.",
-                pattern:
-                  /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-              })}
-            />
-            <TextArea
-              label="Message"
-              error={errors?.message?.message}
-              {...register("message", {
-                required: "Please type a message.",
-                maxLength: 200,
-              })}
-            />
-            <Button
-              label="Send"
-              icon="mail"
-              type="submit"
-              disabled={!isValid && submitCount > 0}
-              style={{ marginTop: "20px", width: "120px" }}
-            />
+            <Zoom delay={1000} triggerOnce cascade>
+              <Input
+                label="Name"
+                style={inputMargin}
+                error={errors?.name?.message}
+                {...register("name", {
+                  required: "Please type your name.",
+                  maxLength: 60,
+                })}
+              />
+              <Input
+                label="E-mail"
+                style={inputMargin}
+                error={errors?.email?.message}
+                {...register("email", {
+                  required: "Please type your email address.",
+                  pattern:
+                    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                })}
+              />
+              <TextArea
+                label="Message"
+                error={errors?.message?.message}
+                {...register("message", {
+                  required: "Please type a message.",
+                  maxLength: 200,
+                })}
+              />
+              <Button
+                label="Send"
+                icon="mail"
+                type="submit"
+                disabled={!isValid && submitCount > 0}
+                style={{ marginTop: "20px", width: "120px" }}
+              />
+            </Zoom>
           </ContactForm>
-          <Separator />
+          <Fade delay={2000} triggerOnce>
+            <Separator />
+          </Fade>
           <SocialLinksWrapper>
             <Subtitle>Get in touch another way...</Subtitle>
             <SocialLinks socialLinks={socialIcons} isContact />
           </SocialLinksWrapper>
         </ContactContentContainer>
+        {isLaptop && <FooterIllustration />}{" "}
       </ResponsiveContainer>
-      {/* <Illustration
-        name="footerIllustration"
-        height={height * 0.6 + "px"}
-        width={width + "px"}
-      /> */}
     </SectionContainer>
   );
 };

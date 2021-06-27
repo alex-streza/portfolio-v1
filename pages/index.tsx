@@ -37,16 +37,47 @@ export default function Home() {
             "expressjs",
             "postgres",
             "docker",
+            "nginx",
+          ]}
+          socialLinks={[
+            {
+              name: "website",
+              href: "https://bike-theft-map.bikmo.com/",
+            },
           ]}
         />
         <ProjectSection
-          title="Golf Genius Directory"
-          description="Management website for golf related events and tournaments with features such as event registration, event map and filtering for wanted events."
+          title="Code Preview - Storybook Addon"
+          description="The current implementations of code preview addons in Storybook was lackluster and harder to use for newer versions so I implemented one using the Storybook API and Webpack Loader & Plugins."
           tag="Golf events site"
-          imageUrl="/images/golf.png"
-          techs={["react", "redux", "typescript", "circle_ci"]}
+          imageUrl="/images/code-preview.png"
           sectionIndex={-1}
+          techs={["react", "storybook", "webpack", "github", "npm"]}
+          socialLinks={[
+            {
+              name: "github",
+              href: "https://github.com/alex-streza/code-preview",
+            },
+            {
+              name: "npm",
+              href: "https://www.npmjs.com/package/storybook-addon-code-preview",
+            },
+          ]}
           contrast
+        />
+        <ProjectSection
+          title="Portfolio"
+          description="After designing the layouts for all resolutions with Figma I ended up using NextJS and React to showcase my other projects through this interactive and responsive website."
+          tag="Design & Development"
+          imageUrl="/images/portfolio.png"
+          sectionIndex={-1}
+          techs={["react", "nextjs", "github", "npm", "figma"]}
+          socialLinks={[
+            {
+              name: "github",
+              href: "https://github.com/alex-streza/portfolioz",
+            },
+          ]}
         />
         <SkillsSection />
         <ContactSection />
