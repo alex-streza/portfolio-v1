@@ -3,6 +3,7 @@ import styled from "styled-components";
 const IllustrationContainer = styled.div`
   position: absolute;
   bottom: 0;
+  z-index: -1;
 `;
 const FooterIllustration = () => {
   const width = window.innerWidth;

@@ -1,4 +1,4 @@
-import { device } from "components/container/device";
+import { device, size } from "components/container/device";
 import Icon from "components/icons";
 import { useState } from "react";
 import { useMediaQuery } from "react-responsive";
@@ -96,7 +96,7 @@ const socialIcons = [
 ];
 
 const SocialLinks = (props: SocialLinksProps) => {
-  const isTablet = useMediaQuery({ minWidth: 768 });
+  const isTablet = useMediaQuery({ minWidth: size.tablet });
   const iconSize = isTablet ? "40px" : "36px";
   const { socialLinks = socialIcons, isContact, isProject, contrast } = props;
   const initialColor = contrast ? "#ffffff" : "#000000";

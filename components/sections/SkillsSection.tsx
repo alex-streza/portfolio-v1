@@ -1,11 +1,11 @@
-import { device, size } from "components/container/device";
-import { Element } from "react-scroll";
-import styled, { CSSObject } from "styled-components";
-import ResponsiveContainer from "components/container";
-import SkillCard from "components/cards";
 import TechBadge from "components/buttons/TechBadge";
+import SkillCard from "components/cards";
+import ResponsiveContainer from "components/container";
+import { device, size } from "components/container/device";
+import { Fade, Zoom } from "react-awesome-reveal";
 import { useMediaQuery } from "react-responsive";
-import { Zoom, Fade } from "react-awesome-reveal";
+import { Element } from "react-scroll";
+import styled from "styled-components";
 
 const Title = styled.h2<{ contrast?: boolean }>`
   color: ${({ contrast }) => (contrast ? "#ffffff" : "#000000")};
@@ -62,7 +62,7 @@ const skills = [
   {
     title: "UI/UX Design",
     description:
-      "Designing is often forgotten but it’s the groundwork for any great product or service. From illustrations to photograps or even 3D models count me in.",
+      "Designing is often undervalued but it’s the groundwork for any great product or service. From websites to even 3D models and maybe illustrations count me in.",
     icon: "frontend",
     iconWidth: "160px",
     iconHeight: "24px",
@@ -128,7 +128,6 @@ const SkillsSection = () => {
                 icon={techs[0]}
                 label={techs[0].charAt(0).toUpperCase() + techs[0].slice(1)}
                 isSmall={isPhoneOrTablet}
-                hideHover={isPhoneOrTablet}
                 contrast
               />
             </Zoom>
@@ -141,8 +140,7 @@ const SkillsSection = () => {
                     key={`tech-${index}`}
                     icon={tech}
                     label={tech.charAt(0).toUpperCase() + tech.slice(1)}
-                    isSmall={isPhoneOrTablet}
-                    hideHover={isPhoneOrTablet}
+                    canHover={!isPhoneOrTablet}
                     contrast
                   />
                 ))}
@@ -157,7 +155,7 @@ const SkillsSection = () => {
                   icon={tech}
                   label={tech.charAt(0).toUpperCase() + tech.slice(1)}
                   isSmall={isPhoneOrTablet}
-                  hideHover={isPhoneOrTablet}
+                  canHover={!isPhoneOrTablet}
                   contrast
                 />
               ))}
@@ -171,7 +169,7 @@ const SkillsSection = () => {
                   icon={tech}
                   label={tech.charAt(0).toUpperCase() + tech.slice(1)}
                   isSmall={isPhoneOrTablet}
-                  hideHover={isPhoneOrTablet}
+                  canHover={!isPhoneOrTablet}
                   contrast
                 />
               ))}
@@ -185,7 +183,7 @@ const SkillsSection = () => {
                   icon={tech}
                   label={tech.charAt(0).toUpperCase() + tech.slice(1)}
                   isSmall={isPhoneOrTablet}
-                  hideHover={isPhoneOrTablet}
+                  canHover={!isPhoneOrTablet}
                   contrast
                 />
               ))}
@@ -199,8 +197,7 @@ const SkillsSection = () => {
                     key={`tech-${index}`}
                     icon={tech}
                     label={tech.charAt(0).toUpperCase() + tech.slice(1)}
-                    isSmall={isPhoneOrTablet}
-                    hideHover={isPhoneOrTablet}
+                    canHover={!isPhoneOrTablet}
                     contrast
                   />
                 ))}
@@ -216,7 +213,7 @@ const SkillsSection = () => {
               }
               isSmall={isPhoneOrTablet}
               contrast
-              hideHover={isPhoneOrTablet}
+              canHover={!isPhoneOrTablet}
             />
           </Zoom>
         </TechBadgesContainer>

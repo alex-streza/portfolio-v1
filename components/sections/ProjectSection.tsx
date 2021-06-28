@@ -1,10 +1,11 @@
 import TechBadge from "components/buttons/TechBadge";
 import ResponsiveContainer from "components/container";
 import { device } from "components/container/device";
+import Squares from "components/illustrations/Squares";
 import SocialLinks from "components/navBar/SocialLinks";
 import Image from "next/image";
 import React from "react";
-import { Zoom, Fade, Slide } from "react-awesome-reveal";
+import { Fade, Slide, Zoom } from "react-awesome-reveal";
 import { Element } from "react-scroll";
 import styled from "styled-components";
 import { SocialLink } from "types/Project";
@@ -51,17 +52,22 @@ const Description = styled.p<{ contrast?: boolean }>`
   @media ${device.mobileL} {
     margin-top: 24px;
     font-size: 20px;
+    width: 40ch;
   }
   @media ${device.laptop} {
     margin-top: 60px;
     font-size: 20px;
-    width: 560px;
+    width: 60ch;
   }
 `;
 
 const ContentContainer = styled.div<{ contrast?: boolean }>`
   margin: 10% 0;
   margin-left: ${({ contrast }) => (contrast ? "auto" : "0")};
+
+  @media ${device.laptop} {
+    width: 50%;
+  }
 `;
 
 const ScrollableElement = styled(Element)`
@@ -182,8 +188,25 @@ const ProjectSection = (props: ProjectSectionProps) => {
             </Zoom>
           </TechBadgesContainer>
         </ContentContainer>
-        <Fade delay={1500} triggerOnce>
+        <Fade triggerOnce>
           <ProjectImageContainer contrast={contrast}>
+            <Squares
+              count={36}
+              style={{
+                right: contrast ? "-44px" : "0",
+                top: "-44px",
+                left: contrast ? "" : "-44px",
+              }}
+            />
+
+            <Squares
+              count={36}
+              style={{
+                right: contrast ? "400px" : "0",
+                left: contrast ? "initial" : "400px",
+                bottom: "-68px",
+              }}
+            />
             <Image
               src={imageUrl}
               alt={title}

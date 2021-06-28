@@ -14,7 +14,9 @@ const StyledButton = styled.button`
   color: #ffffff;
   border-radius: ${({ theme }) => theme.borderRadius};
   background-color: ${({ theme, disabled }) =>
-    !disabled ? theme.palette.secondary : theme.palette.disabled};
+    !disabled
+      ? tinycolor(theme.palette.secondary).darken().toHexString()
+      : theme.palette.disabled};
   height: 48px;
   border: none;
   padding: 4px 12px;
@@ -32,16 +34,16 @@ const StyledButton = styled.button`
 
   :hover {
     background-color: ${({ theme, disabled }) =>
-      !disabled && tinycolor(theme.palette.secondary).lighten().toHexString()};
+      !disabled && tinycolor(theme.palette.secondary).toHexString()};
   }
 
   :active {
     background-color: ${({ theme, disabled }) =>
-      !disabled && tinycolor(theme.palette.secondary).darken().toHexString()};
+      !disabled && tinycolor(theme.palette.secondary).darken(15).toHexString()};
   }
 
   svg {
-    margin-left: auto;
+    margin-left: 12px;
   }
 `;
 

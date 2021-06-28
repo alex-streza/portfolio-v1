@@ -4,13 +4,18 @@ import styled from "styled-components";
 import SocialLinks from "components/navBar/SocialLinks";
 import { useMediaQuery } from "react-responsive";
 import { Link } from "react-scroll";
-import { Slide, Fade } from "react-awesome-reveal";
+import { Fade } from "react-awesome-reveal";
 
-const NavBarContainer = styled(Container)`
+const NavBarContainer = styled.nav`
   display: flex;
   align-items: center;
   padding-right: 0 !important;
   height: 68px;
+  padding: 0 20px;
+  background-color: ${({ theme }) => theme.palette.primary};
+  @media ${device.laptop} {
+    padding: 0 170px;
+  }
 
   @media ${device.tablet} {
     height: 100px;
@@ -28,6 +33,7 @@ const NavBarMenu = styled.ul`
   place-content: center;
   height: 100%;
   padding-right: 20px;
+  list-style-type: none;
 
   @media ${device.tablet} {
     padding-right: 80px;
@@ -37,7 +43,6 @@ const NavBarMenu = styled.ul`
 const NavBarItem = styled(Link)`
   font-size: 16px;
   color: #ffffff;
-  text-align: center;
   cursor: pointer;
   margin-top: 4px;
 
@@ -74,29 +79,34 @@ const NavBarLogo = styled.a`
   }
 `;
 
+const ResponsiveSocialLinksContainer = styled.div`
+  display: none;
+
+  @media ${device.laptop} {
+    display: block;
+  }
+`;
+
 const menuItems = ["Work", "Skills", "Contact"];
 
 const NavBar = () => {
-  const isDesktop = useMediaQuery({ minWidth: 1024 });
-
   return (
     <NavBarContainer>
       <NavBarLogo href="/" />
       <NavBarMenu>
-        <Fade delay={500} cascade triggerOnce>
+        <Fade delay={500} style={{ textAlign: "center" }} cascade triggerOnce>
           {menuItems.map((menuItem, index) => (
-            <NavBarItem
-              key={index}
-              to={`section-${index + 1}`}
-              duration={500}
-              smooth
-            >
-              {menuItem}
-            </NavBarItem>
+            <li style={{ textAlign: "center" }} key={index}>
+              <NavBarItem to={`section-${index + 1}`} duration={500} smooth>
+                {menuItem}
+              </NavBarItem>
+            </li>
           ))}
         </Fade>
       </NavBarMenu>
-      {isDesktop && <SocialLinks />}
+      <ResponsiveSocialLinksContainer>
+        <SocialLinks />
+      </ResponsiveSocialLinksContainer>
     </NavBarContainer>
   );
 };

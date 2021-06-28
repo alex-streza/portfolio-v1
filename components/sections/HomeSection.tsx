@@ -1,27 +1,11 @@
 import Button from "components/buttons";
 import ResponsiveContainer from "components/container";
 import { device } from "components/container/device";
+import HomeIllustration from "components/illustrations/HomeIllustration";
 import SocialLinks from "components/navBar/SocialLinks";
-import { useMediaQuery } from "react-responsive";
+import { Fade, Slide } from "react-awesome-reveal";
 import { Element } from "react-scroll";
 import styled from "styled-components";
-import { Slide, Fade } from "react-awesome-reveal";
-
-const Illustration = styled.figure`
-  position: absolute;
-  z-index: -1;
-  left: 0;
-  background: no-repeat;
-  background-image: url("/icons/background.svg");
-  width: 80vw;
-  height: 100%;
-  margin: 0;
-  height: calc(100vh - 68px);
-
-  @media ${device.tablet} {
-    height: calc(100vh - 100px);
-  }
-`;
 
 const Title = styled.h1`
   max-width: 200px;
@@ -43,15 +27,14 @@ const Subtitle = styled.p`
   font-size: 16px;
   line-height: 156.6%;
   letter-spacing: 0.12em;
-  max-width: 230px;
+  max-width: 28ch;
   color: #ffffff;
-  font-weight: 300;
   margin-top: 12px;
   margin-bottom: 32px;
 
   @media ${device.mobileL} {
     font-size: 20px;
-    max-width: 400px;
+    max-width: 32ch;
   }
 `;
 
@@ -75,11 +58,19 @@ const SocialLinksContainer = styled.div`
   }
 `;
 
+const SlideButton = styled(Slide)`
+  button {
+    max-width: 160px;
+
+    @media ${device.mobileL} {
+      max-width: 200px;
+    }
+  }
+`;
 const HomeSection = () => {
-  const isPhone = useMediaQuery({ maxWidth: "425px" });
   return (
     <Element name="section-0">
-      <Illustration />
+      <HomeIllustration />
       <ResponsiveContainer
         style={{
           flexDirection: "column",
@@ -90,15 +81,13 @@ const HomeSection = () => {
           <Title>Wonderfully Crafted Web Experiences</Title>
         </Slide>
         <Fade delay={1000} triggerOnce>
-          <Subtitle>Every project is unique and so is my work</Subtitle>
+          <Subtitle>
+            Custom and intricate solutions for every project's unique needs.
+          </Subtitle>
         </Fade>
-        <Slide delay={1000} triggerOnce>
-          <Button
-            label="Contact me"
-            icon="mail"
-            style={{ maxWidth: isPhone ? "160px" : "180px" }}
-          />
-        </Slide>
+        <SlideButton delay={1000} triggerOnce>
+          <Button label="Contact me" icon="mail" />
+        </SlideButton>
       </ResponsiveContainer>
       <SocialLinksContainer>
         <SocialLinks />

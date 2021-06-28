@@ -14,7 +14,7 @@ const InputContainer = styled.div`
   flex-direction: column;
 `;
 
-const Label = styled.label<{ error: boolean }>`
+const Label = styled.label<any>`
   font-size: 14px;
   font-weight: 600;
   height: 20px;
@@ -68,7 +68,9 @@ const Input = (props: InputProps) => {
 
   return (
     <InputContainer style={style}>
-      <Label error={hasError}>{label}</Label>
+      <Label for={rest.id} error={hasError}>
+        {label}
+      </Label>
       <TextInput
         type={type}
         placeholder={placeholder}

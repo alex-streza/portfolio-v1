@@ -15,7 +15,7 @@ const InputContainer = styled.div`
   flex-direction: column;
 `;
 
-const Label = styled.label<{ error: boolean }>`
+const Label = styled.label<any>`
   font-size: 14px;
   font-weight: 600;
   line-height: 20px;
@@ -58,7 +58,9 @@ const TextArea = forwardRef((props: InputProps, ref: any) => {
 
   return (
     <InputContainer>
-      <Label error={hasError}>{label}</Label>
+      <Label for={rest.id} error={hasError}>
+        {label}
+      </Label>
       <TextInput
         placeholder={placeholder}
         ref={ref}

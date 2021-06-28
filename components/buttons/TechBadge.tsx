@@ -1,4 +1,4 @@
-import { device } from "components/container/device";
+import { device, size } from "components/container/device";
 import Icon from "components/icons";
 import { useState } from "react";
 import styled from "styled-components";
@@ -9,7 +9,7 @@ interface BadgeProps {
   description?: string;
   isSmall?: boolean;
   contrast?: boolean;
-  hideHover?: boolean;
+  canHover?: boolean;
 }
 
 const calculateMaxWidth = (
@@ -36,6 +36,7 @@ const BadgeContainer = styled.div<{
   ${({ theme, isSmall, contrast }) =>
     isSmall && !contrast ? "" : theme.boxShadow};
   border-radius: 8px;
+  opacity: unset !important;
   background-color: #ffffff;
   display: flex;
   padding: 14px;
@@ -70,9 +71,8 @@ const Label = styled.span<{ active?: boolean }>`
 `;
 
 const TechBadge = (props: BadgeProps) => {
-  const { label = "", icon, isSmall, contrast, hideHover } = props;
+  const { label = "", icon, isSmall, contrast, canHover = true } = props;
   const iconSize = isSmall ? "32px" : "44px";
-
   const [active, setActive] = useState(false);
 
   return (
@@ -80,8 +80,8 @@ const TechBadge = (props: BadgeProps) => {
       isSmall={isSmall}
       active={active}
       contrast={contrast}
-      onMouseLeave={() => hideHover && setActive(false)}
-      onMouseEnter={() => setActive(true)}
+      onMouseLeave={() => !canHover && setActive(false)}
+      onMouseEnter={() => canHover && setActive(true)}
     >
       <Icon name={icon} width={iconSize} />
       <Label className="tech-label" active={active}>

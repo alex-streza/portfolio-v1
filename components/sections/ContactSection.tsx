@@ -144,6 +144,7 @@ const ContactSection = () => {
           <ContactForm onSubmit={handleSubmit(onSubmit)}>
             <Zoom delay={1000} triggerOnce cascade>
               <Input
+                id="name"
                 label="Name"
                 style={inputMargin}
                 error={errors?.name?.message}
@@ -153,6 +154,7 @@ const ContactSection = () => {
                 })}
               />
               <Input
+                id="email"
                 label="E-mail"
                 style={inputMargin}
                 error={errors?.email?.message}
@@ -163,6 +165,7 @@ const ContactSection = () => {
                 })}
               />
               <TextArea
+                id="message"
                 label="Message"
                 error={errors?.message?.message}
                 {...register("message", {

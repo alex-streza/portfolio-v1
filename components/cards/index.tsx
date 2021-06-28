@@ -1,6 +1,5 @@
 import { device } from "components/container/device";
 import React from "react";
-import { useMediaQuery } from "react-responsive";
 import styled from "styled-components";
 import Icon from "components/icons";
 
