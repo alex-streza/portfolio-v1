@@ -30,7 +30,7 @@ export default function Home() {
 
   const title = "Alex Streza";
   const description =
-    "Every product or service tells a story and I'm here to help you write it, I'm Alex Streza a Frontend developer and designer with experience in many technologies suchs as React, NextJS, Storybook and many others.";
+    "Every product or service tells a story and I'm here to help you write it, I'm Alex Streza a Frontend developer and designer experienced in React, NextJS, Storybook and many others.";
   const image = "https://i.postimg.cc/KvBdC1h3/portfolio.png";
   const url = "alex-streza.io";
 
@@ -51,7 +51,7 @@ export default function Home() {
         <meta property="og:url" content={url} />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
-        <meta property="og:image:url" content={image} />
+        <meta property="og:image" content={image} />
         <meta property="og:image:secure_url" content={image} />
 
         <meta property="twitter:card" content="summary_large_image" />
