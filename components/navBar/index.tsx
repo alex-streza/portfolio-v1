@@ -83,6 +83,8 @@ const ResponsiveSocialLinksContainer = styled.div`
   display: none;
 
   @media ${device.laptop} {
+    height: 100%;
+    width: 33%;
     display: block;
   }
 `;

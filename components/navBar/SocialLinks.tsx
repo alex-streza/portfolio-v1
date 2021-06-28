@@ -32,7 +32,7 @@ const SocialLinksContainer = styled.div<SocialLinksProps>`
     background-color: ${({ isProject }) =>
       isProject ? "transparent" : "#ffffff"};
     width: ${({ isContact, isProject }) =>
-      isContact || isProject ? "initial" : "33%"};
+      isContact || isProject ? "initial" : "100%"};
     margin-top: 0;
 
     flex-direction: ${({ isContact }) => (isContact ? "column" : "row")};
