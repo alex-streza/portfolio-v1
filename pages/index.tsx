@@ -30,8 +30,8 @@ export default function Home() {
 
   const title = "Alex Streza";
   const description =
-    "Hi I'm Alex Streza a Frontend developer and designer with experience in many technologies suchs as React, NextJS, Storybook and many others.";
-  const image = "/images/portfolio.png";
+    "Every product or service tells a story and I'm here to help you write it, I'm Alex Streza a Frontend developer and designer with experience in many technologies suchs as React, NextJS, Storybook and many others.";
+  const image = "https://i.postimg.cc/KvBdC1h3/portfolio.png";
   const url = "alex-streza.io";
 
   useEffect(() => {

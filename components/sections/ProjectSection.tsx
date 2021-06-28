@@ -194,7 +194,7 @@ const ProjectSection = (props: ProjectSectionProps) => {
               count={36}
               style={{
                 right: contrast ? "-44px" : "0",
-                top: "-44px",
+                bottom: "-44px",
                 left: contrast ? "" : "-44px",
               }}
             />
@@ -204,7 +204,7 @@ const ProjectSection = (props: ProjectSectionProps) => {
               style={{
                 right: contrast ? "400px" : "0",
                 left: contrast ? "initial" : "400px",
-                bottom: "-68px",
+                top: "-68px",
               }}
             />
             <Image
