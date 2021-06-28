@@ -82,7 +82,7 @@ const HomeSection = () => {
         </Slide>
         <Fade delay={1000} triggerOnce>
           <Subtitle>
-            Custom and intricate solutions for every project's unique needs.
+            Custom and intricate solutions for every project's unique needs
           </Subtitle>
         </Fade>
         <SlideButton delay={1000} triggerOnce>
