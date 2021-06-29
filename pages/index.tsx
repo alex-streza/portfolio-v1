@@ -32,7 +32,7 @@ export default function Home() {
   const description =
     "Every product or service tells a story and I'm here to help you write it, I'm Alex Streza a Frontend developer and designer experienced in React, NextJS, Storybook and many others.";
   const image = "https://i.postimg.cc/KvBdC1h3/portfolio.png";
-  const url = "alex-streza.io";
+  const url = "alexstreza.dev";
 
   useEffect(() => {
     document.documentElement.lang = "en";
