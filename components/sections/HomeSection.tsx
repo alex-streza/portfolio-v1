@@ -15,12 +15,12 @@ const Title = styled.h1`
 
   @media ${device.mobileL} {
     max-width: 400px;
-    margin-top: 100px;
+    margin-top: 80px;
   }
 
   @media ${device.laptop} {
     max-width: 520px;
-    margin-top: 120px;
+    margin-top: 100px;
   }
 `;
 
@@ -30,8 +30,8 @@ const Subtitle = styled.p`
   letter-spacing: 0.12em;
   max-width: 28ch;
   color: #ffffff;
-  margin-top: 12px;
-  margin-bottom: 32px;
+  margin-top: 20px;
+  margin-bottom: 48px;
 
   @media ${device.mobileL} {
     font-size: 20px;
