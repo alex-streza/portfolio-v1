@@ -45,6 +45,9 @@ const TextInput = styled.input<{ error: boolean }>`
   :focus {
     border-color: ${({ theme, error }) =>
       error ? theme.palette.error : theme.palette.primary};
+    outline: 1px solid
+      ${({ error, theme }) =>
+        error ? theme.palette.error : "rgba(0, 0, 0, 0.15)"};
     transition: all 0.2s ease-in-out;
   }
 `;

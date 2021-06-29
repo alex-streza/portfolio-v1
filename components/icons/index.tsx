@@ -1,5 +1,6 @@
 import Blender from "./blender.svg";
 import CircleCi from "./circle_ci.svg";
+import Close from "./close.svg";
 import Cursor from "./cursor.svg";
 import Docker from "./docker.svg";
 import Dribble from "./dribble.svg";
@@ -25,6 +26,7 @@ import Website from "./website.svg";
 const iconMap = {
   blender: Blender,
   circle_ci: CircleCi,
+  close: Close,
   cursor: Cursor,
   docker: Docker,
   dribble: Dribble,

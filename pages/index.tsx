@@ -65,7 +65,7 @@ export default function Home() {
         <HomeSection />
         <ProjectSection
           title="Bicycle Theft Map app"
-          description="Responsive website to showcase bicycle thefts in the UK (2020) in order to increase awareness and determine dangerous hotspots. Due to unprecendented spikes in thefts and no measures where taken a visualization tool was in demand. "
+          description="Responsive website to showcase bicycle thefts in the UK (2020) in order to increase awareness and determine dangerous hotspots. Due to unprecendented spikes in thefts and no measures being taken a visualization tool was in demand. "
           tag="Featured Project"
           imageUrl="/images/bike-theft-map.png"
           techs={[

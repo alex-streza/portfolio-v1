@@ -6,6 +6,7 @@ import SocialLinks from "components/navBar/SocialLinks";
 import { Fade, Slide } from "react-awesome-reveal";
 import { Element } from "react-scroll";
 import styled from "styled-components";
+import Scroll from "react-scroll";
 
 const Title = styled.h1`
   max-width: 200px;
@@ -68,6 +69,15 @@ const SlideButton = styled(Slide)`
   }
 `;
 const HomeSection = () => {
+  const handleClickContactMe = () => {
+    const scroller = Scroll.scroller;
+    scroller.scrollTo("section-3", {
+      duration: 2000,
+      delay: 100,
+      smooth: true,
+    });
+  };
+
   return (
     <Element name="section-0">
       <HomeIllustration />
@@ -86,7 +96,11 @@ const HomeSection = () => {
           </Subtitle>
         </Fade>
         <SlideButton delay={1000} triggerOnce>
-          <Button label="Contact me" icon="mail" />
+          <Button
+            label="Contact me"
+            icon="mail"
+            onClick={handleClickContactMe}
+          />
         </SlideButton>
       </ResponsiveContainer>
       <SocialLinksContainer>

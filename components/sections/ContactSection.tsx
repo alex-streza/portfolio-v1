@@ -1,4 +1,5 @@
 import Button from "components/buttons";
+import NotificationCard from "components/cards/NotificationCard";
 import ResponsiveContainer from "components/container";
 import { device, size } from "components/container/device";
 import FooterIllustration from "components/illustrations/FooterIllustration";
@@ -6,11 +7,11 @@ import Input from "components/inputs";
 import TextArea from "components/inputs/TextArea";
 import SocialLinks from "components/navBar/SocialLinks";
 import { useState } from "react";
+import { Fade, Zoom, Slide } from "react-awesome-reveal";
 import { useForm } from "react-hook-form";
 import { useMediaQuery } from "react-responsive";
 import { Element } from "react-scroll";
 import styled from "styled-components";
-import { Zoom, Slide, Fade } from "react-awesome-reveal";
 
 const SectionContainer = styled(Element)`
   scroll-snap-align: start;
@@ -104,14 +105,12 @@ const socialIcons = [
 ];
 
 const ContactSection = () => {
-  const [submitted, setSubmitted] = useState(false);
+  const [showCard, setShowCard] = useState(false);
   const {
     register,
     handleSubmit,
     formState: { errors, isValid, submitCount },
   } = useForm();
-
-  const isLaptop = useMediaQuery({ minWidth: size.laptop });
 
   const inputMargin = { marginBottom: "12px" };
   const onSubmit = (data: any) => {
@@ -124,7 +123,7 @@ const ContactSection = () => {
       body: JSON.stringify(data),
     }).then((res) => {
       if (res.status === 200) {
-        setSubmitted(true);
+        setShowCard(true);
       }
     });
   };
@@ -137,6 +136,20 @@ const ContactSection = () => {
           alignItems: "center",
         }}
       >
+        {showCard && (
+          <Slide
+            direction="down"
+            style={{
+              position: "absolute",
+              top: "25%",
+              boxShadow: "1px 1px 40px rgba(103, 0, 238, 0.15)",
+              zIndex: 10000,
+              borderRadius: "8px",
+            }}
+          >
+            <NotificationCard close={() => setShowCard(false)} />
+          </Slide>
+        )}
         <Fade triggerOnce>
           <Title>Contact me</Title>
         </Fade>
@@ -190,7 +203,7 @@ const ContactSection = () => {
             <SocialLinks socialLinks={socialIcons} isContact />
           </SocialLinksWrapper>
         </ContactContentContainer>
-        {isLaptop && <FooterIllustration />}{" "}
+        <FooterIllustration />
       </ResponsiveContainer>
     </SectionContainer>
   );

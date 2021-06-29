@@ -1,10 +1,8 @@
-import { Container } from "components/container";
 import { device } from "components/container/device";
-import styled from "styled-components";
 import SocialLinks from "components/navBar/SocialLinks";
-import { useMediaQuery } from "react-responsive";
-import { Link } from "react-scroll";
 import { Fade } from "react-awesome-reveal";
+import { Link } from "react-scroll";
+import styled from "styled-components";
 
 const NavBarContainer = styled.nav`
   display: flex;

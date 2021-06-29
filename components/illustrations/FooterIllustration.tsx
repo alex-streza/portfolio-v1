@@ -1,15 +1,25 @@
+import { device } from "components/container/device";
 import styled from "styled-components";
 
 const IllustrationContainer = styled.div`
   position: absolute;
   bottom: 0;
   z-index: -1;
+  display: none;
+
+  @media ${device.tablet} {
+    display: block;
+  }
+
+  @media (max-height: 868px) {
+    display: none;
+  }
 `;
 const FooterIllustration = () => {
   const width = window.innerWidth;
 
   return (
-    <IllustrationContainer>
+    <IllustrationContainer className="illustrationContainer">
       <svg
         width={width}
         height="630"
