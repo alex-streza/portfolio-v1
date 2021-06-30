@@ -36,8 +36,9 @@ const sendEmail = (req: NextApiRequest, res: NextApiResponse) => {
   };
 
   transporter.sendMail(mailData, function (err: any, info: any) {
-    if (err) res.status(500).end(JSON.stringify(err));
-    else res.status(200).end("Email sent successfully!");
+    res.status(500).end(JSON.stringify(err));
+    // if (err) res.status(500).end(JSON.stringify(err));
+    // else res.status(200).end("Email sent successfully!");
   });
 };
 
