@@ -30,7 +30,7 @@ const sendEmail = (req: NextApiRequest, res: NextApiResponse) => {
   const mailData = {
     from: "portofolio.contact@gmail.com",
     to: process.env.email,
-    subject: `Message From ${name} - Email ${email}`,
+    subject: `Message from ${name} - Email ${email}`,
     text: message,
     html: `<div>${message}</div>`,
   };
