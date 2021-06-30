@@ -1,17 +1,20 @@
 import Button from "components/buttons";
-import NotificationCard from "components/cards/NotificationCard";
 import ResponsiveContainer from "components/container";
-import { device, size } from "components/container/device";
+import { device } from "components/container/device";
 import FooterIllustration from "components/illustrations/FooterIllustration";
 import Input from "components/inputs";
 import TextArea from "components/inputs/TextArea";
 import SocialLinks from "components/navBar/SocialLinks";
+import dynamic from "next/dynamic";
 import { useState } from "react";
-import { Fade, Zoom, Slide } from "react-awesome-reveal";
+import { Fade, Slide, Zoom } from "react-awesome-reveal";
 import { useForm } from "react-hook-form";
-import { useMediaQuery } from "react-responsive";
 import { Element } from "react-scroll";
 import styled from "styled-components";
+
+const NotificationCard = dynamic(
+  () => import("components/cards/NotificationCard")
+);
 
 const SectionContainer = styled(Element)`
   scroll-snap-align: start;
