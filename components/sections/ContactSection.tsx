@@ -124,11 +124,13 @@ const ContactSection = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
-    }).then((res) => {
-      if (res.status === 200) {
-        setShowCard(true);
-      }
-    });
+    })
+      .then((res) => {
+        if (res.status === 200) {
+          setShowCard(true);
+        }
+      })
+      .catch((err) => {});
   };
 
   return (
