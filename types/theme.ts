@@ -5,7 +5,7 @@ const theme: DefaultTheme = {
   boxShadow: "box-shadow: 2px 2px 12px rgba(103, 0, 238, 0.33);",
 
   typography: {
-    font: "Poppins",
+    font: "Geometria",
     fontSizes: {
       desktop: {},
       mobile: {},
