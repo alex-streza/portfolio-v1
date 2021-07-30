@@ -8,6 +8,7 @@ import Expressjs from "./expressjs.svg";
 import Figma from "./figma.svg";
 import Frontend from "./frontend.svg";
 import Github from "./github.svg";
+import Hashnode from "./hashnode.svg";
 import Linkedin from "./linkedin.svg";
 import Mail from "./mail.svg";
 import Mapbox from "./mapbox.svg";
@@ -34,6 +35,7 @@ const iconMap = {
   figma: Figma,
   frontend: Frontend,
   github: Github,
+  hashnode: Hashnode,
   linkedin: Linkedin,
   mail: Mail,
   mapbox: Mapbox,

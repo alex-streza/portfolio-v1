@@ -105,6 +105,11 @@ const socialIcons = [
     href: "https://dribbble.com/snappy_guy",
     username: "/snappy.guy",
   },
+  {
+    name: "hashnode",
+    href: "https://alexstreza.hashnode.dev",
+    username: "/snappyguy",
+  },
 ];
 
 const ContactSection = () => {
