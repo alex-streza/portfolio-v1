@@ -9,7 +9,7 @@ import Figma from "./figma.svg";
 import Frontend from "./frontend.svg";
 import Github from "./github.svg";
 import Hashnode from "./hashnode.svg";
-import Medium from "./Medium.svg";
+import Medium from "./medium.svg";
 import Linkedin from "./linkedin.svg";
 import Mail from "./mail.svg";
 import Mapbox from "./mapbox.svg";
