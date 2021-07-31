@@ -106,6 +106,11 @@ const socialIcons = [
     username: "/snappy.guy",
   },
   {
+    name: "medium",
+    href: "https://medium.com/@astre999",
+    username: "/snappy.guy",
+  },
+  {
     name: "hashnode",
     href: "https://alexstreza.hashnode.dev",
     username: "/snappyguy",

@@ -93,6 +93,7 @@ const socialIcons = [
     href: "https://www.linkedin.com/in/alexandru-streza-7a4254155",
   },
   { name: "dribble", href: "https://dribbble.com/snappy_guy" },
+  { name: "medium", href: "https://medium.com/@astre999" },
   { name: "hashnode", href: "https://alexstreza.hashnode.dev" },
 ];
 
