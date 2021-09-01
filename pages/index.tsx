@@ -87,7 +87,7 @@ export default function Home() {
         <ProjectSection
           title="Code Preview - Storybook Addon"
           description="The current implementations of code preview addons in Storybook was lackluster and harder to use for newer versions so I implemented a more robust adaptation (hopefully) using the Storybook API and Webpack Loader & Plugins."
-          tag="Golf events site"
+          tag="NPM Package"
           imageUrl="/images/code-preview.png"
           techs={["react", "storybook", "webpack", "github", "npm"]}
           socialLinks={[
