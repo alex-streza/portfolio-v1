@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@types/nodemailer": "^6.4.2",
-    "@types/react-responsive": "^8.0.2",
+    "@types/react-responsive": "^8.0.3",
     "@types/react-scroll": "^1.8.2",
     "@types/react-transition-group": "^4.4.1",
     "@types/tinycolor2": "^1.4.2",
