@@ -63,7 +63,7 @@ export default function Home() {
       <NavBar />
       <SectionsContainer>
         <HomeSection />
-        <ProjectSection
+        {/* <ProjectSection
           title="Bicycle Theft Map app"
           description="Responsive website to showcase bicycle thefts in the UK (2020) in order to increase awareness and determine dangerous hotspots. Due to unprecendented spikes in thefts and no measures being taken a visualization tool was in demand. "
           tag="Featured Project"
@@ -83,13 +83,12 @@ export default function Home() {
               href: "https://bike-theft-map.bikmo.com/",
             },
           ]}
-        />
+        /> */}
         <ProjectSection
           title="Code Preview - Storybook Addon"
           description="The current implementations of code preview addons in Storybook was lackluster and harder to use for newer versions so I implemented a more robust adaptation (hopefully) using the Storybook API and Webpack Loader & Plugins."
           tag="Golf events site"
           imageUrl="/images/code-preview.png"
-          sectionIndex={-1}
           techs={["react", "storybook", "webpack", "github", "npm"]}
           socialLinks={[
             {
@@ -101,7 +100,6 @@ export default function Home() {
               href: "https://www.npmjs.com/package/storybook-addon-code-preview",
             },
           ]}
-          contrast
         />
         <ProjectSection
           title="Portfolio"
@@ -116,6 +114,7 @@ export default function Home() {
               href: "https://github.com/alex-streza/portfolio",
             },
           ]}
+          contrast
         />
         <SkillsSection />
         <ContactSection />
